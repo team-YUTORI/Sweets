@@ -60,3 +60,20 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+
+# ログイン機能やユーザ登録機能などを簡単に実装できる
+gem 'devise'
+# ページデザイン
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'jquery-rails'
+# クレジットカード
+gem 'payjp'
+# 画像アップロード機能
+gem 'carrierwave'
+# 画像リサイズ
+gem 'mini_magick'
+# ページネーション
+gem 'kaminari'
+# 検索機能
+gem 'ransack'
