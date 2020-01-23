@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  root to: 'homes#top'
+  get 'homes/top'
+  get 'homes/thanks' => 'homes#thanks'
+  get 'homes/about' => 'homes#about'
   
   devise_for :admins, controllers: {
     sessions:      'admins/sessions'
