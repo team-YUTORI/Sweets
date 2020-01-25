@@ -1,6 +1,6 @@
 
 
-<table class="table">
+	<table class="table">
 		<thead>
  			<tr>
  				<th>ジャンル検索</th>
@@ -18,7 +18,7 @@
       <% @items.each do |item| %>
  			<tr>
  				<td>
-          <%= item.item_image_id %>
+          <%= attachment_image_tag @item_image, :image_image, %>
  					<%= item.name %>
           ¥<%= item.without_tax_price %>
  				</td>
@@ -26,4 +26,4 @@
  			<% end %>
       <%= paginate @item, class: "paginate" %>
  		</tbody>
-	 </table>
+	</table>
