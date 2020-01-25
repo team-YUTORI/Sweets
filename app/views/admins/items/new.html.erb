@@ -1,0 +1,36 @@
+
+
+  <h1>商品　新規登録画面</h1>
+
+  <%= form.for(@item) do |f| %>
+  <%= attachment_image_tag item, :item_image, :fill, 100,100, format:'jpeg', fallback: "no_image.jpg" %>
+  <%= f.attachment_field :item_image, placeholder: "画像選択" %>
+
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <td>商品名</td>
+        <td><%= f.text_field :name  %></td>
+      </tr>
+      <tr>
+        <td>商品説明</td>
+        <td><%= f.text_area :description %></td>
+      </tr>
+      <tr>
+        <td>ジャンル</td>
+        <td><%= f.select :genre_id, Genre.all.map { |genre| [genre.name,genre.id] }, placeholder:"--選択してください--" %></td>   <%# ジャンル名で選択できるようにしている %>
+        <%# <td><%= f.collection_select :genre_id, Genre.all, :id, :genre_name, placeholder:"--選択してください--" %></td> %>
+      </tr>
+      <tr>
+        <td>税抜価格</td>
+        <td><%= f.text_field :without_tax_price %>円</td>
+      </tr>
+      <tr>
+        <td>販売ステータス</td>
+        <td><%= f.select :sale_status, ['販売中', '売切れ'], placeholder:"--選択してください--" %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= f.submit "新規登録" %>
