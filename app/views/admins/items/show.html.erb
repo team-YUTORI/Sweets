@@ -10,11 +10,11 @@
     <tbody>
       <tr>
         <td>商品名</td>
-        <td><%= item.name %></td>
+        <td><%= @items.name %></td>
       </tr>
       <tr>
         <td>商品説明</td>
-        <td><%= item.description %></td>
+        <td><%= @items.description %></td>
       </tr>
       <tr>
         <td>ジャンル</td>
@@ -22,11 +22,11 @@
       </tr>
       <tr>
         <td>税込価格(税抜価格)</td>
-        <td><%= tax.floor %>(<%= item.without_tax_price %>)円</td>
+        <td><%= tax.floor(@items.price) %>(<%= without_tax_price(@items.price) %>)</td>
       </tr>
       <tr>
         <td>販売ステータス</td>
-        <td><%= item.sale_status %></td>
+        <td><%= @items.sale_status %></td>
       </tr>
     </tbody>
   </table>
