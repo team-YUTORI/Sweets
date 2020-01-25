@@ -14,10 +14,10 @@ class Admins::ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @items = Item.find(prams[:id])
-    if @items.user != admin_user
-      redirect_to root_path
-    end
+    # @items = Item.find(params[:id])
+    # if @items.user != admin_user
+      # redirect_to root_path
+    # end
   end
 
   def create
@@ -42,14 +42,13 @@ class Admins::ItemsController < ApplicationController
       redirect_to item_path(@item)
     else
       render :edit
+    end
   end
-
-  def destroy
-  end
-
 
   private
+
   def item_params
-    params.require(:item).permit(:name, :description, :genre_id, :without_tax_price, :sale_status)
+    params.require(:item).permit(:item_id, :name, :description, :genre_id, :without_tax_price, :sale_status)
   end
+
 end

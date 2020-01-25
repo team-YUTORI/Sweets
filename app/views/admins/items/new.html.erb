@@ -2,13 +2,11 @@
 
   <h1>商品　新規登録画面</h1>
 
-  <%= form.for(@item) do |f| %>
-
-
-  <% if @items.errors.any? %>
+  <%= form_for(@item) do |f| %>
+  <% if @item.errors.any? %>
     <div class="alert alert-danger">
       <ul>
-      <% @items.errors.full_messages.each do |msg| %>
+      <% @item.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -16,8 +14,8 @@
   <% end %>
 
 
-  <%# <%= attachment_image_tag item, :item_image, :fill, 100,100, format:'jpeg' %> %>
-  <%= attachment_image_tag item, :item_image, :fill, 100,100, format:'jpeg', fallback: "no_image.jpg" %>
+  <%= attachment_image_tag @item, :item_image, :fill, 100,100, format:'jpeg' %>
+  <%# <%= attachment_image_tag item, :item_image, :fill, 100,100, format:'jpeg', fallback: "no_image.jpg" %> %>
   <%= f.attachment_field :item_image, placeholder: "画像選択" %>
 
 
@@ -48,3 +46,5 @@
   </table>
 
   <%= f.submit "新規登録" %>
+
+  <% end %>
