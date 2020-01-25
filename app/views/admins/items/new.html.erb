@@ -13,17 +13,13 @@
     </div>
   <% end %>
 
-
-  <%= attachment_image_tag @item, :item_image, :fill, 100,100, format:'jpeg' %>
-  <%# <%= attachment_image_tag item, :item_image, :fill, 100,100, format:'jpeg', fallback: "no_image.jpg" %> %>
-  <%= f.attachment_field :item_image, placeholder: "画像選択" %>
-
+  <%= f.file_field :image, placeholder: "画像選択" %>
 
   <table class="table">
     <tbody>
       <tr>
         <td>商品名</td>
-        <td><%= f.text_field :name  %></td>
+        <td><%= f.text_field :name %></td>
       </tr>
       <tr>
         <td>商品説明</td>
@@ -31,8 +27,7 @@
       </tr>
       <tr>
         <td>ジャンル</td>
-        <td><%= f.select :genre_id, Genre.all.map { |genre| [genre.name,genre.id] }, placeholder:"--選択してください--" %></td>   <%# ジャンル名で選択できるようにしている %>
-        <%# <td><%= f.collection_select :genre_id, Genre.all, :id, :genre_name, placeholder:"--選択してください--" %></td> %>
+        <td><%= f.select :genre_id, Genre.all.map { |genre| [genre.name,genre.id] }, prompt: "--選択してください--"  %></td>   <%# ジャンル名で選択できるようにしている %>
       </tr>
       <tr>
         <td>税抜価格</td>
@@ -40,7 +35,7 @@
       </tr>
       <tr>
         <td>販売ステータス</td>
-        <td><%= f.select :sale_status, [['販売中', 0], ['売切れ', 1]], placeholder:"--選択してください--" %></td>
+        <td><%= f.select :sale_status, [['販売中', 0], ['売切れ', 1]], prompt:"--選択してください--" %></td>
       </tr>
     </tbody>
   </table>
