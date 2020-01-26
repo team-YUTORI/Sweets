@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require_tree .
 
+
 // トップページのアニメーション
 $(document).ready(function () {
   $("#theTarget").skippr({
