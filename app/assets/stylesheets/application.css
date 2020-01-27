@@ -13,31 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-  div, #theTarget{
-    display: inline-block;
-  }
- /* ホームコントローラートップページ */
-  #container{
-    height: 400px;
-    width: 70%;
-    float: right;
-    margin-top: 30px;
-    margin-right: 20px;
-  }
-  /* トップページアニメーション */
-  .image1 {
-   background-image: url(cake1.jpg);
-  }
-  .image2 {
-    background-image: url(cake2.jpg);
-  }
-  .image3 {
-    background-image: url(cake3.jpg);
-  }
-  .image4 {
-    background-image: url(cake4.jpg);
-  }
-  .image5 {
-    background-image: url(cake5.jpg);
-  }
