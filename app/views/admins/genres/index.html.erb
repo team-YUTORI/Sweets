@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-3"></div>
+    <div class="col-md-3"></div>
 
-    <div class="col-xs-9">
+    <div class="col-md-9">
       <h2>ジャンル追加・一覧画面</h2>
 
       <%= form_with(model: @genre, url: admins_genres_path, local: true) do |form| %>
@@ -27,11 +27,14 @@
           <tbody>
             <tr>
               <td>
-                <%= link_to edit_admins_genre_path(genre.id) do%><%= genre.name %>
-                <% end %>
+                <%= genre.name %>
               </td>
               <td>
-              <%= on_display(genre) %>
+              <% if genre.on_display == true %>
+                有効
+              <% else %>
+               無効
+              <% end %>
               </td>
               <td>
                 <%= link_to"Edit" , edit_admins_genre_path(genre.id) %>
