@@ -1,0 +1,44 @@
+
+
+  <h1>商品 詳細画面</h1>
+
+
+  <%= form_for(@items) do |f| %>
+   <% if @items.item_image_id? %>
+      <%= image_tag @items.item_image_id.url %>
+   <% else %>
+      <%= image_tag "/assets/default.jpg", :size => '100x100' %>
+   <% end %>
+   <% end %>
+
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <td>商品名</td>
+        <td><%= @items.name %></td>
+      </tr>
+      <tr>
+        <td>商品説明</td>
+        <td><%= @items.description %></td>
+      </tr>
+      <tr>
+        <td>ジャンル</td>
+        <td>
+          <%# <%= genre.name %>
+        </td>
+      </tr>
+      <tr>
+        <td>税込価格(税抜価格)</td>
+        <td><%= @tax.floor.to_s(:delimited, delimiter: ',') %>  (<%= @items.without_tax_price.to_s(:delimited, delimiter: ',') %>)円</td>
+      </tr>
+      <tr>
+        <td>販売ステータス</td>
+        <td><%= @items.sale_status %></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <%= link_to "編集する", edit_admins_item_path %>
+  <%= link_to "削除する", admins_item_path, method: :delete, data: { confirm: 'Are you sure?' } %>
