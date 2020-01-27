@@ -25,6 +25,7 @@ class Customers::DeliveryAddressesController < ApplicationController
   end
 
   def edit
+    @delivery = DeliveryAddress.find(params[:id])
   end
 
   def update
