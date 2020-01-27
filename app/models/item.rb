@@ -1,6 +1,5 @@
 class Item < ApplicationRecord
 
-
   mount_uploader :item_image_id, ItemImageIdUploader
 
   validates :name, presence: true
