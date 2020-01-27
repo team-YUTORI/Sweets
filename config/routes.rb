@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  # root to: 'homes#top'
-  # get 'homes/top' => 'homes#top'
-  # get 'homes/thanks' => 'homes#thanks'
-  # get 'homes/about' => 'homes#about'
 
   devise_for :admins, controllers: {
     sessions:      'admins/sessions'
@@ -23,7 +19,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
    end
   # 顧客
-  scope module: :customers do
+
     resources :users, only: [:show, :edit, :update, :destroy]
     resources :items, only: [:show, :index]
     resources :orders, only: [:show, :index]
