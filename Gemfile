@@ -77,3 +77,5 @@ gem 'mini_magick'
 gem 'kaminari'
 # 検索機能
 gem 'ransack'
+# デバッグ用
+gem 'pry-byebug'

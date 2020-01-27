@@ -1,17 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <%= form_for(@genre) do |f| %>
+
+      <%= form_for(@genre, url: admins_genre_path) do |f| %>
 
       <h2>ジャンル編集画面</h2>
 
       <h4>ジャンル</h4>
       <%= f.text_field :name %>
-      <h4>Opinion</h4>
-      <%= f.text_area :body %>
     </br>
-    <%= f.submit '変更を保存する' %>
-  <% end %>
+      <%= f.submit '変更を保存する' %>
+       <% end %>
 </div>
 </div>
 </div>

@@ -15,19 +15,23 @@ class Admins::GenresController < ApplicationController
     @genre = Genre.new
   end
 
- def on_display(genre)
-   if genre.on_display
-     有効
-   else
-     無効
-   end
- end
-
 
   def edit
+    @genre = Genre.find(params[:id])
    end
 
-  def destroy; end
+  def update
+    @genre = Genre.find(params[:id])
+		if @genre.update(admin_genre_params)
+  		redirect_to admins_genres_path, notice:"You have updated book successfully."
+		else
+		    render :edit
+  end
+
+  end
+
+  def destroy;
+  end
 
 private
 def admin_genre_params
