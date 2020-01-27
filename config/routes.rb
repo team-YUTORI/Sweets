@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update, :destroy]
     resources :items, only: [:show, :index]
     resources :orders, only: [:show, :index]
-    resources :delivery_address, only: [:new, :index, :create, :edit, :update, :destroy]
+    resources :delivery_addresses, only: [:index, :create, :edit, :update, :destroy]
     resources :carts_items, only: [:index, :update, :destroy]
     get 'homes/top' => 'homes#top'
     get 'thanks' => 'homes#thanks'
