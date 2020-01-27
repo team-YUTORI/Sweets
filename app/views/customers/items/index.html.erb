@@ -14,11 +14,12 @@
  				</td>
  			</tr>
       <% end %>
-      <h1><%= @genre.name %></h1>（全<%= @item.total_count %>件）<%# 検索件数を表示 %>
+      <%# <h1><%= @genre.name %></h1> %>
+			（全<%= @items.count %>件）<%# 検索件数を表示 %>
       <% @items.each do |item| %>
  			<tr>
  				<td>
-          <%= attachment_image_tag @item_image, :image_image, %>
+          <%= image_tag item.image.url %>
  					<%= item.name %>
           ¥<%= item.without_tax_price %>
  				</td>

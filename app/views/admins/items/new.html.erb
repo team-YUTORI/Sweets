@@ -2,7 +2,7 @@
 
   <h1>商品　新規登録画面</h1>
 
-  <%= form_for(@item) do |f| %>
+  <%= form_for(@item, url: admins_items_path) do |f| %>   <%# urlを指定すると作動する %>
   <% if @item.errors.any? %>
     <div class="alert alert-danger">
       <ul>
@@ -35,7 +35,7 @@
       </tr>
       <tr>
         <td>販売ステータス</td>
-        <td><%= f.select :sale_status, [['販売中', 0], ['売切れ', 1]], prompt:"--選択してください--" %></td>
+        <td><%= f.select :sale_status, [["販売中",0], ["売切れ",1]], prompt:"--選択してください--" %></td>
       </tr>
     </tbody>
   </table>

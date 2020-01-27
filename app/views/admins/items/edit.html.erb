@@ -3,7 +3,7 @@
   <h1>商品　編集画面</h1>
 
 
-  <%= form.for(@item) do |f| %>
+  <%= form.for(@items, url: admins_items_path) do |f| %>
 
 
   <% if @items.errors.any? %>
@@ -17,9 +17,9 @@
   <% end %>
 
 
-  <%# <%= attachment_image_tag item, :item_image, :fill, 100,100, format:'jpeg' %> %>
-  <%= attachment_image_tag item, :item_image, :fill, 100,100, format:'jpeg', fallback: "no_image.jpg" %>
-  <%= f.attachment_field :item_image, placeholder: "画像選択" %>
+
+  <%= image_tag @items.image.url %>
+  <%= f.file_field :image, placeholder: "画像選択" %>
 
 
   <table class="table">
@@ -35,7 +35,6 @@
       <tr>
         <td>ジャンル</td>
         <td><%= f.select :genre_id, Genre.all.map { |genre| [genre.name,genre.id] } %></td>
-        <%# <td><%= f.collection_select :genre_id, Genre.all, :id, :genre_name %></td> %>
       </tr>
       <tr>
         <td>税抜価格</td>
@@ -49,3 +48,5 @@
   </table>
 
   <%= f.submit "変更を保存" %>
+
+  <% end %>

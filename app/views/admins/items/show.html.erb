@@ -3,7 +3,7 @@
   <h1>商品 詳細画面</h1>
 
 
-  <%= attachment_image_tag item, :item_image, :fill, 100,100, format:'jpeg', fallback: "no_image.jpg" %>
+  <%= image_tag @items.image.url %>
 
 
   <table class="table">

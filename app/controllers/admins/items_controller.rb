@@ -3,7 +3,7 @@ class Admins::ItemsController < ApplicationController
   def index
     @item = Item.page(params[:page]).per(10)
     @items = Item.all
-    @genre = Genre.find(params[:genre_id])
+    # @genre = Genre.find(params[:id])
   end
 
   def show
@@ -31,9 +31,9 @@ class Admins::ItemsController < ApplicationController
 
   def edit
     @items = Item.find(params[:id])
-    if @items.user != admin_user
-      redirect_to root_path
-    end
+    # if @items.user != admin_user
+    #   redirect_to root_path
+    # end
   end
 
   def update
@@ -48,7 +48,11 @@ class Admins::ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:item_id, :name, :description, :genre_id, :without_tax_price, :sale_status)
+    params.require(:item).permit(:name, :description, :genre_id, :without_tax_price, :sale_status)
+  end
+
+  def genre_params
+    prams.require(:genre).permit(:name, :genre_id)
   end
 
 end
