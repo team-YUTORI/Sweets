@@ -8,13 +8,12 @@ class Admins::ItemsController < ApplicationController
 
   def show
     @items = Item.find(params[:id])
-    genre = Genre.find(params[:id])
-    tax = item.without_tax_price * 1.1   # 税抜価格を所得し、税率10%をかけた
+    # genre = Genre.find(params[:id])
+    tax = @items.without_tax_price * 1.1   # 税抜価格を所得し、税率10%をかけた
   end
 
   def new
     @item = Item.new
-    # @items = Item.find(params[:id])
     # if @items.user != admin_user
       # redirect_to root_path
     # end
@@ -23,7 +22,7 @@ class Admins::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to item_path(item.id)
+      redirect_to admins_item_path(@item.id)
     else
       render :new
     end

@@ -3,7 +3,7 @@
   <h1>商品 詳細画面</h1>
 
 
-  <%= image_tag @items.image.url %>
+  <%= image_tag @items.item_image.url %>
 
 
   <table class="table">
@@ -18,11 +18,15 @@
       </tr>
       <tr>
         <td>ジャンル</td>
-        <td><%= genre.name %></td>
+        <td>
+          <%# <%= genre.name %> %>
+        </td>
       </tr>
       <tr>
         <td>税込価格(税抜価格)</td>
-        <td><%= tax.floor(@items.price) %>(<%= without_tax_price(@items.price) %>)</td>
+        <td>
+          <%# <%= tax.floor(@items.price) %> %>
+          <%# (<%= without_tax_price(@items.price) %>)</td> %>
       </tr>
       <tr>
         <td>販売ステータス</td>
@@ -32,4 +36,4 @@
   </table>
 
 
-  <%= link_to "編集する", edit_item_path %>
+  <%= link_to "編集する", edit_admins_item_path %>

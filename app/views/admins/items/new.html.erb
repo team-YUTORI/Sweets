@@ -25,17 +25,17 @@
         <td>商品説明</td>
         <td><%= f.text_area :description %></td>
       </tr>
-      <tr>
+      <!-- <tr>
         <td>ジャンル</td>
         <td><%= f.select :genre_id, Genre.all.map { |genre| [genre.name,genre.id] }, prompt: "--選択してください--"  %></td>   <%# ジャンル名で選択できるようにしている %>
-      </tr>
+      </tr> -->
       <tr>
         <td>税抜価格</td>
         <td><%= f.text_field :without_tax_price %>円</td>
       </tr>
       <tr>
         <td>販売ステータス</td>
-        <td><%= f.select :sale_status, [["販売中",0], ["売切れ",1]], prompt:"--選択してください--" %></td>
+        <td><%= f.select :sale_status, [['販売中',0], ['売切れ',1]], prompt:"--選択してください--" %></td>
       </tr>
     </tbody>
   </table>
