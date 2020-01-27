@@ -1,5 +1,4 @@
 
-
   <table class="table">
   	<thead>
    		<tr>
@@ -16,12 +15,12 @@
       <% end %>
    	</tbody>
   </table>
-      <%= image_tag @item.image.url %>
-      <%= @item.name %>
-      <%= @item.description %>
-      ¥<%= tax.floor %>(税込)   <%# 税込み価格を表示。floorで小数点以下を切り捨て %>
+      <%= image_tag @items.item_image_id.url %>
+      <%= @items.name %>
+      <%= @items.description %>
+      ¥<%= @tax.floor.to_s(:delimited, delimiter: ',') %>(税込)   <%# 税込み価格を表示。floorで小数点以下を切り捨て %>
 
-      <%= form_for (item_number, url:carts_items_path) do |from| %>
-        <%= form_numbr_field :item_number, class:"",min: 1, max: 10, placeholder:"個数選択" %>   <%# 個数選択のファーム（1〜10まで選べる) %>
-        <%= f.submit "カートに入れる", class:"" %>
-      <% end %>
+      <%# <%= form_for (item_number, url:carts_items_path) do |from| %>
+        <%# <%= form_numbr_field :item_number, class:"",min: 1, max: 10, placeholder:"個数選択" %>   <%# 個数選択のファーム（1〜10まで選べる) %>
+        <%# <%= f.submit "カートに入れる", class:"" %>
+      <%# <% end %>

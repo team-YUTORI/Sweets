@@ -19,7 +19,7 @@
       <% @items.each do |item| %>
  			<tr>
  				<td>
-          <%= image_tag item.image.url %>
+          <%= image_tag item.item_image_id.url %>
  					<%= item.name %>
           ¥<%= item.without_tax_price %>
  				</td>
