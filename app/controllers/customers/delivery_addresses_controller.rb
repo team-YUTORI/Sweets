@@ -18,12 +18,6 @@ class Customers::DeliveryAddressesController < ApplicationController
 
   end
 
-  def destroy
-    delivery = DeliveryAddress.find(params[:id])
-    delivery.destroy
-    redirect_to delivery_addresses_path
-  end
-
   def edit
     @delivery = DeliveryAddress.find(params[:id])
   end
@@ -38,6 +32,16 @@ class Customers::DeliveryAddressesController < ApplicationController
        render :edit
     end
 
+  end
+
+  def new
+    @delivery = DeliveryAddress.new
+  end
+
+  def destroy
+    delivery = DeliveryAddress.find(params[:id])
+    delivery.destroy
+    redirect_to delivery_addresses_path
   end
 
   private
