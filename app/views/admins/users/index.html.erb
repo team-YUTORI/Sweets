@@ -1,0 +1,37 @@
+<h2>会員一覧画面</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>会員ID</th>
+      <th>氏名</th>
+      <th>メールアドレス</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |customer|%>
+      <tr>                                     
+        <td>
+          <%= customer.id %>
+        </td>
+        <td>
+          <%= link_to admins_user_path(customer.id) do %>
+            <%= customer.last_name %>
+            <%= customer.first_name %>
+          <% end %>
+        </td>
+        <td>
+          <%= customer.email %>
+        </td>
+        <td>
+        <% if customer.deleted_at == nil%>
+          有効
+        <% else %>
+          退会済
+        <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

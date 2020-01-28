@@ -3,50 +3,53 @@
   <h1>商品　編集画面</h1>
 
 
-  <%= form_for(@items, url: admins_item_path) do |f| %>
+  <%= form_for(@item, url: admins_item_path) do |f| %>
 
 
-  <% if @items.errors.any? %>
-    <div class="alert alert-danger">
-      <ul>
-      <% @items.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <% if @item.errors.any? %>
+      <div class="alert alert-danger">
+        <ul>
+          <% @item.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <% if @item.item_image_id? %>
+      <%= image_tag @item.item_image_id.url %>
+    <% else %>
+      <%= image_tag "/assets/default.jpg", :size => '100x100' %>
+    <% end %>
+
+    <%= f.file_field :item_image_id, placeholder: "画像選択" %>
 
 
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>商品名</td>
+          <td><%= f.text_field :name  %></td>
+        </tr>
+        <tr>
+          <td>商品説明</td>
+          <td><%= f.text_area :description %></td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+          <td><%= f.collection_select(:genre_id, @genres, :id, :name ) %></td>
+        </tr>
+        <tr>
+          <td>税抜価格</td>
+          <td><%= f.text_field :without_tax_price %>円</td>
+        </tr>
+        <tr>
+          <td>販売ステータス</td>
+          <td><%= f.select :sale_status,{販売中: '販売中', 売切れ: '売切れ'} %></td>
+        </tr>
+      </tbody>
+    </table>
 
-  <%= image_tag @items.item_image_id.url %>
-  <%= f.file_field :item_image_id, placeholder: "画像選択" %>
-
-
-  <table class="table">
-    <tbody>
-      <tr>
-        <td>商品名</td>
-        <td><%= f.text_field :name  %></td>
-      </tr>
-      <tr>
-        <td>商品説明</td>
-        <td><%= f.text_area :description %></td>
-      </tr>
-      <!-- <tr>
-        <td>ジャンル</td>
-        <td><%= f.select :genre_id, Genre.all.map { |genre| [genre.name,genre.id] } %></td>
-      </tr> -->
-      <tr>
-        <td>税抜価格</td>
-        <td><%= f.text_field :without_tax_price %>円</td>
-      </tr>
-      <tr>
-        <td>販売ステータス</td>
-        <td><%= f.select :sale_status,{販売中: '販売中', 売切れ: '売切れ'} %></td>
-      </tr>
-    </tbody>
-  </table>
-
-  <%= f.submit "変更を保存" %>
+    <%= f.submit "変更を保存" %>
 
   <% end %>

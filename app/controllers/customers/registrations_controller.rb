@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Customers::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
+# before_actonのコメントアウトを外す
+  before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -10,9 +11,10 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  # 新規登録機能に追加する場合は以下のコメントアウトを外す
+  def create
+    super
+  end
 
   # GET /resource/edit
   # def edit
@@ -41,9 +43,11 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
+  
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :last_kana, :first_kana, :postal_code, :address, :phone_number, :email])
+
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
