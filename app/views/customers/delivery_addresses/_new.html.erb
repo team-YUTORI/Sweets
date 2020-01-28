@@ -1,3 +1,17 @@
+<!-- 配送先登録 -->
+
+<!-- エラー文 -->
+<% if delivery.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= delivery.errors.count %>件のエラーがありますよ〜。</h2>
+    	<ul>
+      	<% delivery.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+      	<% end %>
+   		</ul>
+   </div>
+<% end %>
+
 
 <%= form_for(delivery) do |f| %>
 
