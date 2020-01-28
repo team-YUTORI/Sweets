@@ -12,21 +12,26 @@
       <td>
         注文ステータス</td>
     </thead>
+    <%= @orders.each do |order| %>
+    <%= @details.each do |detail| %>
     <tbody>
+      <tr>
       <td>
-        created_at
+        <%= order.created_at %>
         </td>
       <td>
-        customer_id
+       <%= order.customer_id %>
         </td>
       <td>
-        item_number
-        </td
+        <%= detail.item_number %>
+       </td>
       <td>
-        order_status
+        <%=  %>
         </td>
-
+      </tr>
     </tbody>
+    <% end %>
+    <% end %>
   </table>
 
 
