@@ -3,17 +3,18 @@ class Admins::ItemsController < ApplicationController
   def index
     @item = Item.page(params[:page]).per(10)
     @items = Item.all
-    # @genre = Genre.find(params[:id])
+    @genre = Genre.find(params[:id])
   end
 
   def show
     @items = Item.find(params[:id])
-    # genre = Genre.find(params[:id])
+    @genre = Genre.find(params[:id])
     @tax = @items.without_tax_price * 1.1   # 税抜価格を所得し、税率10%をかけた
   end
 
   def new
     @item = Item.new
+    @genres = Genre.all
     # if @items.user != admin_user
       # redirect_to root_path
     # end
@@ -21,6 +22,7 @@ class Admins::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @genres = Genre.all
     if @item.save
       redirect_to admins_item_path(@item.id)
     else
@@ -30,6 +32,7 @@ class Admins::ItemsController < ApplicationController
 
   def edit
     @items = Item.find(params[:id])
+    @genres = Genre.all
     # if @items.user != admin_user
     #   redirect_to root_path
     # end
@@ -57,7 +60,7 @@ class Admins::ItemsController < ApplicationController
   end
 
   def genre_params
-    prams.require(:genre).permit(:name, :genre_id)
+    prams.require(:genre).permit(:name, :on_display)
   end
 
 end

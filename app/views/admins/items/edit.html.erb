@@ -16,9 +16,12 @@
     </div>
   <% end %>
 
+   <% if @items.item_image_id? %>
+      <%= image_tag @items.item_image_id.url %>
+   <% else %>
+      <%= image_tag "/assets/default.jpg", :size => '100x100' %>
+   <% end %>
 
-
-  <%= image_tag @items.item_image_id.url %>
   <%= f.file_field :item_image_id, placeholder: "画像選択" %>
 
 
@@ -32,10 +35,10 @@
         <td>商品説明</td>
         <td><%= f.text_area :description %></td>
       </tr>
-      <!-- <tr>
+      <tr>
         <td>ジャンル</td>
-        <td><%= f.select :genre_id, Genre.all.map { |genre| [genre.name,genre.id] } %></td>
-      </tr> -->
+        <td><%= f.collection_select(:genre_id, @genres, :id, :name ) %></td>
+      </tr>
       <tr>
         <td>税抜価格</td>
         <td><%= f.text_field :without_tax_price %>円</td>

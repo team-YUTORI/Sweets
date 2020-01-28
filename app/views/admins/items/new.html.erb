@@ -29,10 +29,10 @@
               <td>商品説明</td>
               <td><%= f.text_area :description %></td>
             </tr>
-            <!-- <tr>
+            <tr>
               <td>ジャンル</td>
-              <td><%= f.select :genre_id, Genre.all.map { |genre| [genre.name,genre.id] }, prompt: "--選択してください--"  %></td>   <%# ジャンル名で選択できるようにしている %>
-            </tr> -->
+              <td><%= f.collection_select(:genre_id, @genres, :id, :name, {prompt: "--選択してください--"} ) %></td> <%# ジャンル名で選択できるようにしている %>
+            </tr>
             <tr>
               <td>税抜価格</td>
               <td><%= f.text_field :without_tax_price %>円</td>
