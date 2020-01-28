@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2020_01_27_044813) do
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
-    t.boolean "on_display"
+    t.boolean "on_display", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2020_01_27_044813) do
     t.string "name"
     t.text "description"
     t.integer "without_tax_price"
-    t.boolean "sale_status"
+    t.integer "sale_status"
     t.string "item_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

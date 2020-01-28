@@ -1,0 +1,31 @@
+
+
+  <h1>商品一覧画面</h1>
+
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>税抜価格</th>
+        <th>ジャンル</th>
+        <th>ステータス</th>
+      </tr>
+      <% @items.each do |item| %>
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= link_to admins_item_path(item.id) do %>
+            <%= item.name %>
+            <% end %></td>
+        <td><%= item.without_tax_price.to_s(:delimited, delimiter: ',') %>円</td>   <%# 金額を３桁で区切る %>
+        <td>
+          <%# <%= @genre.name %>
+        </td>
+        <td><%= item.sale_status %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @item, class: "paginate" %>

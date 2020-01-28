@@ -79,3 +79,4 @@ gem 'kaminari'
 gem 'ransack'
 # 論理削除
 gem 'paranoia'
+

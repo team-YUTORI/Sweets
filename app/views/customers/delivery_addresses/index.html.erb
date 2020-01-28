@@ -1,0 +1,68 @@
+
+<h3>配送先登録/一覧</h3>
+
+<!-- サクセスメッセージ -->
+<% if flash[:notice] %>
+  <div class="flash">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<!-- エラー文 -->
+<% if @delivery.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= @delivery.errors.count %>件のエラーがありますよ〜。</h2>
+    	<ul>
+      	<% @delivery.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+      	<% end %>
+   		</ul>
+   </div>
+<% end %>
+
+<!-- 配送先登録 -->
+<%= form_for(@delivery) do |f| %>
+
+  <div class="field row">
+    <label for="postal_code">郵便番号</label>
+    <%= f.text_field :postal_code, class: "col-xs-12 postal_code", placeholder: "ハイフンなし" %>
+  </div>
+
+  <div class="field row">
+    <label for="address">住所</label>
+    <%= f.text_field :address, class: "col-xs-12 address" %>
+  </div>
+
+  <div class="field row">
+    <label for="name">宛名</label>
+  <%= f.text_field :name, class: "col-xs-12 name" %>
+
+  <div class="actions row">
+    <%= f.submit "登録する", class: "col-xs-12" %>
+  </div>
+
+<% end %>
+
+<!-- 配送先一覧 -->
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>郵便番号</th>
+      <th>住所</th>
+      <th>宛名</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @deliverys.each do |del| %>
+      <tr>
+        <td><%= del.postal_code %></td>
+        <td><%= del.address %></td>
+        <td><%= del.name %></td>
+        <td><%= link_to '編集する', edit_delivery_address_path(del) %></td>
+        <td><%= link_to '削除する', delivery_address_path(del), method: :delete, "data-confirm" => '本当に削除しますか?' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
