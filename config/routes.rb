@@ -20,6 +20,7 @@ Rails.application.routes.draw do
    end
   # 顧客
 
+  scope module: :customers do
     resources :users, only: [:show, :edit, :update, :destroy]
     resources :items, only: [:show, :index]
     resources :orders, only: [:show, :index]
