@@ -37,4 +37,5 @@ Rails.application.routes.draw do
     get 'thanks' => 'homes#thanks'
     get 'about' => 'homes#about'
     root 'homes#top'
+  end
 end
