@@ -12,14 +12,15 @@ Rails.application.routes.draw do
 
   #管理者
   namespace :admins do
-    resources :users, only: [:show, :index, :edit, :update]
+    resources :users, only: [:show, :index, :edit, :update, :destroy]
     resources :items, only: [:show, :index, :new, :create, :edit, :update, :destroy]
     resources :orders, only: [:show, :index, :top]
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
    end
   # 顧客
-   scope module: :end_users do
+   scope module: :customers do
     resources :users, only: [:show, :edit, :update, :destroy]
+    get 'withdraw_top/:id' => 'users#withdraw_top' ,as: "user_withdrew"
     resources :items, only: [:show, :index]
     resources :orders, only: [:show, :index]
     resources :delivery_address, only: [:new, :index, :create, :edit, :update, :destroy]

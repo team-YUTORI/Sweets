@@ -10,6 +10,32 @@
   </head>
 
   <body>
+    <header>
+  <nav>
+    <ul>
+      <% if customer_signed_in? %>
+        <li>ユーザー</li>
+        <li><%= link_to "Home", "#"%></li>
+        <li><%= link_to "About", "#"%></li>
+        <li><%= link_to "Logout", destroy_customer_session_path, method: :delete %></li>
+        <li><%= link_to "MyPage",user_path(current_customer) %></li>
+      <% elsif admin_signed_in? %>
+        <li>管理者</li>
+        <li><%= link_to "商品一覧", "#"%></li>
+        <li><%= link_to "会員一覧", admins_users_path %></li>
+        <li><%= link_to "注文履歴一覧", "#"%></li>
+        <li><%= link_to "ジャンル管理" , "#"%></li>
+        <li><%= link_to "Logout", destroy_admin_session_path, method: :delete %></li>
+      <% else %>
+        <li>ゲストユーザー</li>
+        <li><%= link_to "Home", "#"%></li>
+        <li><%= link_to "About", "#"%></li>
+        <li><%= link_to "新規登録", new_customer_registration_path %></li>
+        <li><%= link_to "Login", new_customer_session_path %></li>
+      <% end %>
+    </ul>
+  </nav>
+</header>
     <%= yield %>
   </body>
 </html>
