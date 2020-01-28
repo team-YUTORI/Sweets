@@ -1,12 +1,18 @@
 class ApplicationController < ActionController::Base
- def after_sign_up_path_for(resources)
-   admins_genres_path
-end
+
+
+  #ログインし後の遷移先を、adminnかcustomerによって分けた
   def after_sign_in_path_for(resource)
-    admins_genres_path
-  end
-  def after_sign_out_path_for
-    root_path
+    if admin_signed_in?
+      admins_users_path
+    else customer_signed_in?
+      user_path(current_customer)
+    end
   end
 
-  end
+
+  def after_sign_out_path_for(resource)
+    new_customer_session_path
+  end  
+
+end

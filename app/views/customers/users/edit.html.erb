@@ -1,0 +1,56 @@
+<h1>登録情報編集</h1>
+<%= link_to "退会する", user_withdrew_path(current_customer) %>
+
+<%= form_for @user, url: user_path do |f| %>
+  <table class="table">
+  <tbody>
+    <tr>
+      <td>氏名</td>
+      <td>
+        <%= f.text_field :last_name  %>
+        <%= f.text_field :first_name  %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>カナ</td>
+      <td>
+        <%= f.text_field :last_kana %>
+        <%= f.text_field :first_kana %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>郵便番号</td>
+      <td>
+        <%= f.text_field :postal_code %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>住所</td>
+      <td>
+        <%= f.text_field :address %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>電話番号</td>
+      <td>
+        <%= f.telephone_field :phone_number %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>メールアドレス</td>
+      <td>
+        <%= f.email_field :email ,placeholder:"メールアドレス"%>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="action">
+    <%= f.submit '編集内容を保存する' %>
+</div>
+
+<% end %>

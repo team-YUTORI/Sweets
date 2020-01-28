@@ -13,16 +13,23 @@ Rails.application.routes.draw do
 
   #管理者
   namespace :admins do
-    resources :users, only: [:show, :index, :edit, :update]
+    resources :users, only: [:show, :index, :edit, :update, :destroy]
     resources :items, only: [:show, :index, :new, :create, :edit, :update, :destroy]
-    resources :orders, only: [:show, :index, :top]
+    resources :orders, only: [:show, :index] do
+      collection do
+        get 'top'
+      end
+    end
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
    end
   # 顧客
 
-  scope module: :customers do
+   scope module: :customers do
     resources :users, only: [:show, :edit, :update, :destroy]
+    get 'withdraw_top/:id' => 'users#withdraw_top' ,as: "user_withdrew"
     resources :items, only: [:show, :index]
+
+    get 'items/genre/:id' => 'items#index', as: "items_genre"
     resources :orders, only: [:show, :index]
     resources :delivery_addresses, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :carts_items, only: [:index, :update, :destroy]
@@ -30,5 +37,4 @@ Rails.application.routes.draw do
     get 'thanks' => 'homes#thanks'
     get 'about' => 'homes#about'
     root 'homes#top'
-  end
 end
