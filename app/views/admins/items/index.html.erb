@@ -3,6 +3,10 @@
   <h1>商品一覧画面</h1>
 
 
+  <%= link_to new_admins_item_path, class: "btn btn-default btn-circle btn-lg" do %>
+    <i class="">+</i>
+  <% end %>
+
   <table class="table">
     <tbody>
       <tr>
@@ -20,7 +24,7 @@
             <% end %></td>
         <td><%= item.without_tax_price.to_s(:delimited, delimiter: ',') %>円</td>   <%# 金額を３桁で区切る %>
         <td>
-          <%# <%= @genre.name %>
+          <%= item.genre.name %>   <%# itemに紐付いたgenre.nameを所得 %>
         </td>
         <td><%= item.sale_status %></td>
       </tr>

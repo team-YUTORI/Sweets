@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
 
+  belongs_to :genre
 
   mount_uploader :item_image_id, ItemImageIdUploader
 
