@@ -5,6 +5,7 @@ end
 
 def index
   @orders = Order.all
+  @details = OrderDetail.all
 end
 
 def show

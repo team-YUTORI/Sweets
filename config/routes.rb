@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   devise_for :admins, controllers: {
     sessions:      'admins/sessions'
   }
@@ -14,15 +15,26 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :users, only: [:show, :index, :edit, :update]
     resources :items, only: [:show, :index, :new, :create, :edit, :update, :destroy]
-    resources :orders, only: [:show, :index, :top]
+    resources :orders, only: [:show, :index] do
+      collection do
+        get 'top'
+      end
+    end
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
    end
   # 顧客
-   scope module: :customers do
+
     resources :users, only: [:show, :edit, :update, :destroy]
     resources :items, only: [:show, :index]
-    resources :orders, only: [:show, :index]
-    resources :delivery_address, only: [:new, :index, :create, :edit, :update, :destroy]
+    resources :orders, only: [:show, :index] do
+      collection do
+        get 'top'
+      end
+    end
+    resources :delivery_addresses, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :carts_items, only: [:index, :update, :destroy]
-   end
+    get 'homes/top' => 'homes#top'
+    get 'thanks' => 'homes#thanks'
+    get 'about' => 'homes#about'
+    root 'homes#top'
 end

@@ -1,0 +1,43 @@
+<!-- カスタマーのトップページ -->
+
+<!-- アニメーション -->
+<div class="container">
+	<div class="row">
+		<div id="theTarget">
+			<div class="image1"></div>
+			<div class="image2"></div>
+			<div class="image3"></div>
+			<div class="image4"></div>
+			<div class="image5"></div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-2 sidebar">
+			<ul class="nav nav-sidebar">
+				<li><a href="">商品一覧</a></li>
+				<li><a href="">ジャンル</a></li>
+				<li><a href="">アクセス</a></li>
+				<li><a href="">サイドバー</a></li>
+				<li><a href="">サイドバー</a></li>
+				<li><a href="">サイドバー</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col">
+			<div class="table">
+				<% @items.each do |item| %>
+					<tr>
+						<td><%= item.image_tag %></td>
+						<td><%= item.name %></td>
+						<td><%= item.without_tax_price %></td>
+						<td><%= item.description %></td>
+					</tr>
+				<% end %>
+			</div>
+		</div>
+	</div>
+
+</div>

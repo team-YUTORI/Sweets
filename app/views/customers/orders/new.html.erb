@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <thead>
+        <th>
+          商品名
+          </th>
+        <th>
+          単価(税込)
+          </th>
+        <th>
+          数量
+          </th>
+        <th>
+          小計
+          </th>
+        </thead>
+        <tbody>
+         <td>
+           order
+           </td>
+        <td>
+
+          </td>
+        <td>
+
+          </td>
+          </tbody>
+    </div>
+    <div class="col-md-4">
+      <thead>
+        <th>
+        商品合計
+          </th>
+        <th>
+        配送料
+          </th>
+        <th>
+        請求金額
+          </th>
+        </thead>
+
+      <tbody>
+        <td>
+          <%= order.sum %></td>
+        <td>
+          <%= order.postage%>
+         </td>
+        <td>
+          <%= order.postage+=sum %>
+          </td>
+        </tbody>
+
+      支払い方法　
+
+      お届け方法
+
+
+    </div>
+
+
+    </div>
+
+  </div>
