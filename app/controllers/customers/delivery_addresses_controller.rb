@@ -9,8 +9,8 @@ class Customers::DeliveryAddressesController < ApplicationController
     @delivery = DeliveryAddress.new(delivery_address_params)
 
     if @delivery.save
-       redirect_to delivery_addresses_path
        flash[:notice] = "配送先が登録されました"
+       redirect_to delivery_addresses_path
     else
       @deliverys = DeliveryAddress.all
       render :index
@@ -18,17 +18,30 @@ class Customers::DeliveryAddressesController < ApplicationController
 
   end
 
-  def destroy
-    delivery = DeliveryAddress.find(params[:id])
-    delivery.destroy
-    redirect_to delivery_addresses_path
-  end
-
   def edit
     @delivery = DeliveryAddress.find(params[:id])
   end
 
   def update
+    @delivery = DeliveryAddress.find(params[:id])
+
+    if @delivery.update(delivery_address_params)
+       flash[:notice] = "配送先が変更されました"
+       redirect_to delivery_addresses_path
+    else
+       render :edit
+    end
+
+  end
+
+  def new
+    @delivery = DeliveryAddress.new
+  end
+
+  def destroy
+    delivery = DeliveryAddress.find(params[:id])
+    delivery.destroy
+    redirect_to delivery_addresses_path
   end
 
   private

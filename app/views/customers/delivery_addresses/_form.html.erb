@@ -1,0 +1,47 @@
+<!-- 配送先登録 -->
+
+<!-- エラー文 -->
+<% if delivery.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= delivery.errors.count %>件のエラーがありますよ〜。</h2>
+    	<ul>
+      	<% delivery.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+      	<% end %>
+   		</ul>
+   </div>
+<% end %>
+
+
+<%= form_for(delivery) do |f| %>
+
+<table class="table table-bordered table-hover">
+  <!-- 郵便番号入力フォーム -->
+  <tr>
+    <div class="field row">
+      <td class=" col-lg-2 postal_code active">郵便番号</td>
+      <td><%= f.text_field :postal_code, class: "postal_code", placeholder: "ハイフンなし" %></td>
+    </div>
+  </tr>
+  <!-- 住所入力フォーム -->
+  <tr>
+    <div class="field row">
+      <td class="address active">住所</td>
+      <td><%= f.text_field :address, class: "address col-xs-4" %></td>
+    </div>
+  </tr>
+  <!-- 宛名入力フォーム -->
+  <tr>
+    <div class="field row">
+      <td class="name active">宛名</td>
+      <td><%= f.text_field :name, class: "name" %></td>
+    </div>
+  </tr>
+
+</table>
+<!-- 登録ボタン -->
+<div class="actions row">
+  <%= f.submit "登録する", class: "btn btn-success col-xs-1" %>
+</div>
+
+<% end %>
