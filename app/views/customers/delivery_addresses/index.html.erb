@@ -21,48 +21,65 @@
 <% end %>
 
 <!-- 配送先登録 -->
-<%= form_for(@delivery) do |f| %>
+<div class="container">
 
-  <div class="field row">
-    <label for="postal_code">郵便番号</label>
-    <%= f.text_field :postal_code, class: "col-xs-12 postal_code", placeholder: "ハイフンなし" %>
-  </div>
+  <%= form_for(@delivery) do |f| %>
 
-  <div class="field row">
-    <label for="address">住所</label>
-    <%= f.text_field :address, class: "col-xs-12 address" %>
-  </div>
-
-  <div class="field row">
-    <label for="name">宛名</label>
-  <%= f.text_field :name, class: "col-xs-12 name" %>
-
-  <div class="actions row">
-    <%= f.submit "登録する", class: "col-xs-12" %>
-  </div>
-
-<% end %>
-
-<!-- 配送先一覧 -->
-
-<table class="table">
-  <thead>
+  <table class="table table-bordered table-hover">
+    <!-- 郵便番号入力フォーム -->
     <tr>
-      <th>郵便番号</th>
-      <th>住所</th>
-      <th>宛名</th>
+      <div class="field row">
+        <td class=" col-lg-2 postal_code active">郵便番号</td>
+        <td><%= f.text_field :postal_code, class: "postal_code", placeholder: "ハイフンなし" %></td>
+      </div>
     </tr>
-  </thead>
+    <!-- 住所入力フォーム -->
+    <tr>
+      <div class="field row">
+        <td class="address active">住所</td>
+        <td><%= f.text_field :address, class: "address col-xs-4" %></td>
+      </div>
+    </tr>
+    <!-- 宛名入力フォーム -->
+    <tr>
+      <div class="field row">
+        <td class="name active">宛名</td>
+        <td><%= f.text_field :name, class: "name" %></td>
+      </div>
+    </tr>
 
-  <tbody>
-    <% @deliverys.each do |del| %>
+  </table>
+  <!-- 登録ボタン -->
+  <div class="actions row">
+    <%= f.submit "登録する", class: "btn btn-success col-xs-1" %>
+  </div>
+
+  <% end %>
+  <!-- 配送先登録ここまで -->
+
+  <!-- 配送先一覧 -->
+  <table class="table table-bordered table-hover">
+    <thead>
       <tr>
-        <td><%= del.postal_code %></td>
-        <td><%= del.address %></td>
-        <td><%= del.name %></td>
-        <td><%= link_to '編集する', edit_delivery_address_path(del) %></td>
-        <td><%= link_to '削除する', delivery_address_path(del), method: :delete, "data-confirm" => '本当に削除しますか?' %></td>
+        <th class="active col-md-1">郵便番号</th>
+        <th class="active col-md-3">住所</th>
+        <th class="active col-md-1">宛名</th>
+        <th class="active col-md-2" colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @deliverys.each do |del| %>
+        <tr>
+          <td><%= del.postal_code %></td>
+          <td><%= del.address %></td>
+          <td><%= del.name %></td>
+          <td><%= link_to '編集する', edit_delivery_address_path(del), class: "btn btn-info" %>
+          <%= link_to '削除する', delivery_address_path(del), method: :delete, "data-confirm" => '本当に削除しますか?', class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <!-- 配送先一覧ここまで -->
+</div>
