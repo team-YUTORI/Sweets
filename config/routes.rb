@@ -26,12 +26,12 @@ Rails.application.routes.draw do
 
    scope module: :customers do
     resources :users, only: [:show, :edit, :update, :destroy]
-    get 'withdraw_top/:id' => 'users#withdraw_top' ,as: "user_withdrew"
+    get 'withdraw_top/:id' => 'users#withdraw_top' ,as: "user_withdrew" 
     resources :items, only: [:show, :index]
     get 'items/genre/:id' => 'items#index', as: "items_genre"
     resources :orders, only: [:show, :index]
     resources :delivery_addresses, only: [:index, :new, :create, :edit, :update, :destroy]
-    resources :carts_items, only: [:index, :update, :destroy]
+    resources :carts_items, only: [:show, :update, :destroy]
     get 'homes/top' => 'homes#top'
     get 'thanks' => 'homes#thanks'
     get 'about' => 'homes#about'
