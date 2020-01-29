@@ -28,7 +28,6 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update, :destroy]
     get 'withdraw_top/:id' => 'users#withdraw_top' ,as: "user_withdrew"
     resources :items, only: [:show, :index]
-
     get 'items/genre/:id' => 'items#index', as: "items_genre"
     resources :orders, only: [:show, :index]
     resources :delivery_addresses, only: [:index, :new, :create, :edit, :update, :destroy]
@@ -37,4 +36,5 @@ Rails.application.routes.draw do
     get 'thanks' => 'homes#thanks'
     get 'about' => 'homes#about'
     root 'homes#top'
+   end
 end
