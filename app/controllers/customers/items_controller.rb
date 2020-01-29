@@ -14,6 +14,7 @@ class Customers::ItemsController < ApplicationController
 
 
   def show
+     @item_number = CartItem.new   #商品個数を保存
       @genres = Genre.where(on_display: true)
       @item = Item.find(params[:id])   # 選択されたitem_idの情報を代入
       @tax = @item.without_tax_price * 1.1   # 税込み価格
@@ -21,7 +22,7 @@ class Customers::ItemsController < ApplicationController
 
 
   def create
-      @item_number = CartsItems.new   #商品個数を保存
+      @item_number = CartItem.new   #商品個数を保存
     if carts_items.save   # 商品個数を注文詳細に保存
       redirect_to crats_items_path(customer_id)   # 保存したらカートに移動
     end
