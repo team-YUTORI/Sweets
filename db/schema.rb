@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 2020_01_27_053946) do
     t.string "postal_code"
     t.string "address"
     t.string "phone_number"
+    t.boolean "customer_status"
+    t.boolean "is_deleted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
