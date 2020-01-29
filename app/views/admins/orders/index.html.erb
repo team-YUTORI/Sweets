@@ -1,39 +1,46 @@
 <div class="container">
-<div class="row">
-<div class="col-md-12">
-  <table class="table table-hover">
-    <thead>
-      <td>
-        購入日時</td>
-      <td>
-        購入者</td>
-      <td>
-        注文個数</td>
-      <td>
-        注文ステータス</td>
-    </thead>
-    <%= @orders.each do |order| %>
-    <%= @details.each do |detail| %>
-    <tbody>
-      <tr>
-      <td>
-        <%= order.created_at %>
-        </td>
-      <td>
-       <%= order.customer_id %>
-        </td>
-      <td>
-        <%= detail.item_number %>
-       </td>
-      <td>
-        <%=  %>
-        </td>
-      </tr>
-    </tbody>
-    <% end %>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-hover">
+        <h2>注文一覧画面</h2>
+        <thead>
+          <tr>
+          <td>
+            購入日時</td>
+          <td>
+            購入者</td>
+          <td>
+            注文個数</td>
+          <td>
+            注文ステータス</td>
+          </tr>
+        </thead>
+        <%= @orders.each do |order| %>
+        <tbody>
+          <tr>
+            <td>
+              <%= order.created_at %>
+            </td>
+            <td>
+              <%= order.customer_id %>
+            </td>
+            <td>
+              <% sum = 0 %>
+              <% order.order_details.each do |order_detail| %>
+              <% sum = sum + order_detail.item_number %>
+              <% end %>
+              <%= sum %>
+
+            </td>
+            <td>
+              <% order.order_details.each do |order_detail| %>
+              <% order_detail.order_status %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
     <% end %>
   </table>
-
 
 </div>
 </div>
