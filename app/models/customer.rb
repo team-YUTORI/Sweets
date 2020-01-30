@@ -19,4 +19,6 @@ class Customer < ApplicationRecord
   validates :phone_number, presence: true, format: { with: /\A\d{3}[-]\d{4}[-]\d{4}\z/ }
   #論理削除(paranoia)を使うための記述
   acts_as_paranoid
+
+  has_many :cart_items
 end

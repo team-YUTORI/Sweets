@@ -14,20 +14,10 @@ class Customers::ItemsController < ApplicationController
 
 
   def show
-     @item_number = CartItem.new   #商品個数を保存
+     @cart_item = CartItem.new   #商品個数を保存
       @genres = Genre.where(on_display: true)
       @item = Item.find(params[:id])   # 選択されたitem_idの情報を代入
       @tax = @item.without_tax_price * 1.1   # 税込み価格
-      @item_number = CartItem.new
-  end
-
-
-  def create
-      @item_number = CartItem.new(cart_params)   #商品個数を保存
-    if item_number.save   # 商品個数を注文詳細に保存
-      redirect_to crats_items_path   # 保存したらカートに移動
-
-    end
   end
 
   private
@@ -38,10 +28,6 @@ class Customers::ItemsController < ApplicationController
 
   def genre_params
       prams.require(:genre).permit(:name, :genre_id)
-  end
-
-  def cart_params
-    params.require(:cart_item).permit(:item_number)
   end
 
 end

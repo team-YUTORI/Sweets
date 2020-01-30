@@ -2,6 +2,8 @@ class Item < ApplicationRecord
 
   belongs_to :genre
 
+  has_many :cart_items
+
   mount_uploader :item_image_id, ItemImageIdUploader
 
   validates :name, presence: true
