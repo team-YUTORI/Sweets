@@ -29,7 +29,7 @@
       <tr>
         <td>税込価格(税抜価格)</td>
         <td><%= @tax.floor.to_s(:delimited, delimiter: ',') %>  (<%= @item.without_tax_price.to_s(:delimited, delimiter: ',') %>)円</td>
-        <!-- 表示される金額を３桁ずつ[,]を入れるようにした -->
+        <!-- floorで小数点以下を切り捨てて、:delimited, delimiter: ','で表示される金額に３桁ずつ[,]を入れるようにした -->
       </tr>
       <tr>
         <td>販売ステータス</td>
