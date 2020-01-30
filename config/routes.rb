@@ -30,7 +30,8 @@ Rails.application.routes.draw do
     resources :items, only: [:show, :index]
     get 'items/genre/:id' => 'items#index', as: "items_genre"
     resources :orders, only: [:show, :index]
-    resources :delivery_addresses, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :delivery_addresses, only: [:index, :create, :edit, :update, :destroy]
+    get 'delivery_addresses/new/:id' => 'delivery_addresses#new'
     resources :carts_items, only: [:index, :update, :destroy]
     get 'homes/top' => 'homes#top'
     get 'thanks' => 'homes#thanks'
