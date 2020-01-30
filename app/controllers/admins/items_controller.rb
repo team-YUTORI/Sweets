@@ -2,7 +2,8 @@ class Admins::ItemsController < ApplicationController
 
   def index
     @item = Item.page(params[:page]).per(10)
-    @items = Item.all
+    @genres = Genre.where(on_display: true)
+    @items = Item.where(genre: @genres)
     if admin_signed_in?
     else
       redirect_to root_path

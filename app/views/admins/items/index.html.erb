@@ -23,7 +23,7 @@
             <%= item.name %>
             <% end %></td>
         <td><%= item.without_tax_price.to_s(:delimited, delimiter: ',') %>円</td>
-            <%# 金額を３桁で区切る %>
+            <%# (:delimited, delimiter: ',')で金額を３桁で区切る %>
         <td><%= item.genre.name %></td>
           <%# itemに紐付いたgenre.nameを所得 %>
         <td><%= item.sale_status %></td>
