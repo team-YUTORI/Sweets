@@ -7,7 +7,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.string  :name
       t.string :postal_code
       t.string :address
-      t.integer :postage
+      t.integer :postage, default: 800
       t.integer :price
       t.integer :payment
       t.timestamps
