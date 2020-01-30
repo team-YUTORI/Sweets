@@ -8,6 +8,9 @@ class Customers::DeliveryAddressesController < ApplicationController
   def new
     @order = Order.new
     @delivery_addresses = current_customer.delivery_addresses
+
+    
+
   end
 
   def create
