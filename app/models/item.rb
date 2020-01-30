@@ -1,6 +1,9 @@
 class Item < ApplicationRecord
   has_many :order_details
   belongs_to :genre
+  # belongs_to :home
+
+  has_many :cart_items
 
   mount_uploader :item_image_id, ItemImageIdUploader
 

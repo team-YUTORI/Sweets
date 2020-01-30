@@ -2,14 +2,14 @@
 
 <div class="container">
 
-  <h3>配送先登録/一覧</h3>
-
   <!-- サクセスメッセージ -->
   <% if flash[:notice] %>
     <div class="flash">
       <%= flash[:notice] %>
     </div>
   <% end %>
+
+  <h3>配送先登録/一覧</h3>
 
   <!-- 配送先登録 -->
   <%= render 'form', delivery: @delivery %>
