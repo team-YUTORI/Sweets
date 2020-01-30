@@ -32,7 +32,10 @@
       ¥<%= @tax.floor.to_s(:delimited, delimiter: ',') %>(税込)   <%# 税込み価格を表示。floorで小数点以下を切り捨て %>
 
 
-       <%# form_for(@item_number, url:carts_items_path) do |f| %>
-         <%# f.numbr_field :@item_number, min: 1, max: 10, step:1, placeholder:"個数選択" %>   <%# 個数選択のファーム（1〜10まで選べる) %>
-         <%# f.submit "カートに入れる" %>
-       <%# end %>
+      <% if customer_signed_in? %>
+       <%= form_for(@cart_item) do |f| %>
+         <%= f.hidden_field :item_id, value: @item.id %>
+         <%= f.number_field :item_number, min: 1, max: 10, step: 1, placeholder: "個数選択" %>   <%# 個数選択のファーム（1〜10まで選べる) %>
+         <%= f.submit "カートに入れる" %>
+       <% end %>
+      <% end %>
