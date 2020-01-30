@@ -3,7 +3,7 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  #last_nameの空欄、文字制限（１５文字）
+  # last_nameの空欄、文字制限（１５文字）
   validates :last_name, presence: true, length: {maximum: 15 }
   #first_nameの空欄、文字制限（１５文字）
   validates :first_name, presence: true, length: {maximum: 15 }
