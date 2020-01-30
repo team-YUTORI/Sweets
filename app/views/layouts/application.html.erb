@@ -19,6 +19,7 @@
         <li><%= link_to "About", about_path %></li>
         <li><%= link_to "Logout", destroy_customer_session_path, method: :delete %></li>
         <li><%= link_to "MyPage",user_path(current_customer) %></li>
+        <li><%= link_to "ショッピングカート", cart_items_path %>
       <% elsif admin_signed_in? %>
         <li>管理者</li>
         <li><%= link_to "商品一覧", admins_items_path%></li>

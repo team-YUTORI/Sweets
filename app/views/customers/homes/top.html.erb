@@ -15,7 +15,7 @@
 	<div class="row">
 		<div class="col-md-2 sidebar">
 			<ul class="nav nav-sidebar">
-				<li><a href="">商品一覧</a></li>
+				<%= link_to  "商品一覧" , items_path %>
 				<li><a href="">ジャンル</a></li>
 				<li><a href="">アクセス</a></li>
 				<li><a href="">サイドバー</a></li>
@@ -30,7 +30,7 @@
 			<div class="table">
 				<% @items.each do |item| %>
 					<tr>
-						
+						<td><%= item.image_tag %></td>
 						<td><%= item.name %></td>
 						<td><%= item.without_tax_price %></td>
 						<td><%= item.description %></td>
