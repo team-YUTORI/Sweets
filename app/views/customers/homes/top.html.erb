@@ -2,7 +2,7 @@
 
 <!-- アニメーション -->
 <div class="container">
-	<div class="row">
+
 		<div id="theTarget">
 			<div class="image1"></div>
 			<div class="image2"></div>
@@ -10,34 +10,40 @@
 			<div class="image4"></div>
 			<div class="image5"></div>
 		</div>
-	</div>
 
+	<!-- サイドバー -->
 	<div class="row">
-		<div class="col-md-2 sidebar">
-			<ul class="nav nav-sidebar">
-				<%= link_to  "商品一覧" , items_path %>
-				<li><a href="">ジャンル</a></li>
-				<li><a href="">アクセス</a></li>
-				<li><a href="">サイドバー</a></li>
-				<li><a href="">サイドバー</a></li>
-				<li><a href="">サイドバー</a></li>
+		<div class="col-xs-2">
+			<ul class="nav nav-sidebar sidebar">
+				<li><%= link_to "ジャンル検索", items_path %></li>
+				<li><%= link_to "サイドバー", "/" %></li>
+				<li><%= link_to "サイドバー", "/" %></li>
+				<li><%= link_to "サイドバー", "/" %></li>
+				<li><%= link_to "サイドバー", "/" %></li>
+				<li><%= link_to "サイドバー", "/" %></li>
+				<li><%= link_to "サイドバー", "/" %></li>
+				<li><%= link_to "サイドバー", "/" %></li>
+				<li><%= link_to "サイドバー", "/" %></li>
 			</ul>
 		</div>
-	</div>
 
-	<div class="row">
-		<div class="col">
-			<div class="table">
+		<!-- 商品一覧 -->
+		<div class="col-xs-10">
+
 				<% @items.each do |item| %>
-					<tr>
-						<td><%= item.image_tag %></td>
-						<td><%= item.name %></td>
-						<td><%= item.without_tax_price %></td>
-						<td><%= item.description %></td>
-					</tr>
+
+					<div class="top-item-name col-xs-4">
+					<%= link_to item_path(item) do %>
+						<%= image_tag item.item_image_id.url %><br>
+						<span style="font-size: 20px"><%= item.name %></span><br>
+					<% end %>
+					<%= item.without_tax_price.to_s(:delimited, delimiter: ',') %>円<br>
+					<%= item.description %>
+					</div>
+
 				<% end %>
+
 			</div>
 		</div>
-	</div>
 
 </div>

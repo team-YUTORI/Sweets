@@ -39,5 +39,5 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
     root 'homes#top'
   end
-
+  
 end

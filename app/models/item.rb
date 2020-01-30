@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
 
   belongs_to :genre
+  # belongs_to :home
 
   has_many :cart_items
 
