@@ -15,11 +15,8 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :users, only: [:show, :index, :edit, :update, :destroy]
     resources :items, only: [:show, :index, :new, :create, :edit, :update, :destroy]
-    resources :orders, only: [:show, :index] do
-      collection do
-        get 'top'
-      end
-    end
+    get 'orders/top' => 'orders#top'
+    resources :orders, only: [:show, :index, :update]
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
    end
   # 顧客
@@ -39,5 +36,5 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
     root 'homes#top'
   end
-  
+
 end

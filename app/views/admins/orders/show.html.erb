@@ -1,43 +1,72 @@
 <div class="container">
-<div class="row">
-<div class="col-md-12">
+  <div class="row">
+    <div class="col-md-12">
 
+      <%= form_for(@order, url: admins_order_path) do |f| %>
 
-  <table class="table table-hover">
-    <thead>
-      <td>
-        購入者
-        </td>
-      <td>
-        配送先
-        </td>
-      <td>
-        支払い方法
-        </td>
-      <td>
-        注文ステータス<%=link_to 更新 %>
-       </td>
-     </thead>
-    <thead>
-      <td>
-        商品名
-        </td>
-      <td>
-        単価
-        </td>
-      <td>
-        数量
-        </td>
-      <td>
-        小計
-        </td>
-      <td>
-        制作ステータス
-        </td>
-     </thead>
-  </table>
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <tr>
+            <td>購入者</td>
+            <td>
+            <%= f.name %></td>
+            </tr>
+          <tr>
+            <td>配送先</td>
+            <td>
+              <%= f.address %></td>
+          </tr>
+          <tr>
+            <td>
+              支払い方法</td>
+            <td>
+            <%= f.payment %></td>
+          </tr>
+          <tr>
+            <td>
+              注文ステータス
+              </td>
+            <td>
+            <%= f.select :order_status,Order.order_statuses.keys %>
+          <%= f.submit "更新" %></td>
+          </tr>
+        </tbody>
+        </table>
+        <% end %>
+        <%= form_for(@order, url: admins_order_path) do |f| %>
+        <table class="table table-hover">
+        <thead>
+          <td>
+            商品名</td>
+          <td>
+            単価</td>
+          <td>
+            数量</td>
+          <td>
+            小計</td>
+          <td>
+            制作ステータス</td>
+        </thead>
+        <% @order.order_details.each do |order_detail| %>
+           <tbody>
+            <td>
+              <%= order_detail.item.name %></td>
+            <td>
+              <%= order_detail.item.price * 1.1 %></td>
+            <td>
+              <%= order_detail.item_number %></td>
+            <td>
+               <%= order_detail.item.price* 1.1 *order_detail.item_number %>
+              </td>
+              <td>
+              <%= f.select :production_status,OrderDetail.production_statuses.keys %>
+            <%= f.submit "更新" %></td>
+            </tbody>
+          <% end %>
+        </table>
+       <% end %>
 
-
-</div>
-</div>
-</div>
+      </div>
+    </div>
+  </div>
