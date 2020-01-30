@@ -81,3 +81,4 @@ gem 'ransack'
 gem 'paranoia'
 
 gem 'pry-byebug'
+gem 'pry-rails'

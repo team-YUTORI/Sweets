@@ -32,6 +32,8 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :index]
     resources :delivery_addresses, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :cart_items, only: [:index, :create, :update, :destroy]
+    delete 'all_destroy' => 'cart_items#all_destroy', as: "all_destroy"
+    
     get 'homes/top' => 'homes#top'
     get 'thanks' => 'homes#thanks'
     get 'about' => 'homes#about'
