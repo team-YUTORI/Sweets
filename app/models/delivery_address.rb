@@ -5,5 +5,5 @@ class DeliveryAddress < ApplicationRecord
   validates :address, presence: true
   # 宛名バリデーション （空白）
   validates :name, presence: true
-  
+
 end
