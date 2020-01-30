@@ -3,6 +3,9 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  has_many :delivery_addresses
+  
   #last_nameの空欄、文字制限（１５文字）
   validates :last_name, presence: true, length: {maximum: 15 }
   #first_nameの空欄、文字制限（１５文字）
@@ -19,4 +22,5 @@ class Customer < ApplicationRecord
   validates :phone_number, presence: true, exclusion: { in: ["-"] }
   #論理削除(paranoia)を使うための記述
   acts_as_paranoid
+
 end
