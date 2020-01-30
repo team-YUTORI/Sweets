@@ -48,13 +48,12 @@
           <td>
             制作ステータス</td>
         </thead>
-        <%  @order.order_details.each do |order_detail| %>
-
-          <tbody>
+        <% @order.order_details.each do |order_detail| %>
+           <tbody>
             <td>
               <%= order_detail.item.name %></td>
             <td>
-              <%= order_detail.item.price* 1.1 %></td>
+              <%= order_detail.item.price * 1.1 %></td>
             <td>
               <%= order_detail.item_number %></td>
             <td>

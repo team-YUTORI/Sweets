@@ -3,109 +3,114 @@
     <h2>注文履歴詳細</h2>
     <div class="col-md-6">
       <table class="table table-hover">
-      <tbody>
-        <tr>
-        <th>
-          注文日
-          </th>
-        <td>
-           created_at
-          </td>
-          </tr>
-        <tr>
-        <th>
-          配送先
-          </th>
-          <td>
+        <tbody>
+          <tr>
+            <th>
+              注文日
+            </th>
+            <td>
+              <%= @order.created_at %>
             </td>
+          </tr>
+          <tr>
+            <th>
+              配送先
+            </th>
+            <td>
+              <%= @order.postal_code %>
+            </td>
+          </br>
+          <td>
+            <%= @order.address %>
+          </td>
         </tr>
         <tr>
           <th>
-          支払い方法</th>
+            支払い方法</th>
           <td>
-            payment
-            </td>
-        </tr>
-        <tr>
-        <th>
-          ステータス
-          </th>
-        <td>
-          order_status
+            <%= @order.payment %>
           </td>
         </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-md-3 col-offset-3">
-      <h2>請求情報</h2>
-      <tbody>
-      <tr>
-        <td>
-          <%= order.postage %></td>
-      </tr>
+        <tr>
+          <th>
+            ステータス
+          </th>
+          <td>
+            <%= @order.order_status %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-3 col-offset-3">
+    <h2>請求情報</h2>
+    <tbody>
       <tr>
         <th>
           商品合計
-          </th>
-      <td>
-        </td>
-      </tr>
-      <tr>
-        <th>
-          配送料
-          </th>
+        </th>
         <td>
-
-          </td>
-      </tr>
-      <tr>
-        <th>
-          ご請求額
-          </th>
-        <td>
-
-          </td>
-        </tr>
-        </tbody>
-<div class="row">
-  <div class="col-md-8 col-offset-4">
-    <table class="table table-hover">
-      <thead>
-        <th>
-          商品
-          </th>
-        <th>
-          単価(税込)
-          </th>
-        <th>
-          個数
-          </th>
-        <th>
-          小計
-          </th>
-        </thead>
-      <tbody>
-        <td>
-          商品
-          </td>
-        <td>
-          単価(税込)
-          </td>
-        <td>
-          個数
-          </td>
-        <td>
-          小計
-          </td>
-        </tbody>
-
-      </table>
-
-  </div>
-</div>
-
-
-    </div>
-
-  </div>
+          <% sum = 0 %>
+            <% @order.order_details.each do |order_detail| %>
+              <% sum = sum + order_detail.without_tax_price * 1.1 %><% end %>
+              <%= sum %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              配送料
+            </th>
+            <td>
+              <%= @order.postage %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              ご請求額
+            </th>
+            <td>
+              <% sum %>
+                <% @order.order_details.each do |order_detail| %>
+                  <% sum = sum + @order.postage %><% end %>
+                  <%= sum %>
+                </td>
+              </tr>
+            </tbody>
+            <div class="row">
+              <div class="col-md-8 col-offset-4">
+                <table class="table table-hover">
+                  <thead>
+                    <th>
+                      商品
+                    </th>
+                    <th>
+                      単価(税込)
+                    </th>
+                    <th>
+                      個数
+                    </th>
+                    <th>
+                      小計
+                    </th>
+                  </thead>
+                  <% @order.order_details.each do |order_detail| %>
+                    <tbody>
+                      <td>
+                        <%= order_detail.item.name %>
+                      </td>
+                      <td>
+                        <%= order_detail.item.price * 1.1 %>
+                      </td>
+                      <td>
+                        <%= order_detail.item_number %>
+                      </td>
+                      <td>
+                        <%= order_detail.item.price* 1.1 *order_detail.item_number %>
+                      </td>
+                    </tbody>
+                  <% end %>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
