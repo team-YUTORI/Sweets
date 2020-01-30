@@ -80,3 +80,4 @@ gem 'ransack'
 # 論理削除
 gem 'paranoia'
 
+gem 'pry-byebug'
