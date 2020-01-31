@@ -1,11 +1,11 @@
 class Customers::CartItemsController < ApplicationController
 
-
   def index
     @cart_items = CartItem.all
   end
 
   def create
+    #現在ログイン中のユーザーと、そのカートアイテムの空のインスタンスを生成
     cart_item = current_customer.cart_items.new(cart_item_params)
     cart_item.save!
     redirect_to cart_items_path
@@ -18,7 +18,9 @@ class Customers::CartItemsController < ApplicationController
   end
 
   def all_destroy
+    #現在ログイン中のユーザーと、そのカートアイテム情報を代入
     cart_items = current_customer.cart_items
+    #カート内の全ての情報の削除
     cart_items.destroy_all
     redirect_to items_path
   end

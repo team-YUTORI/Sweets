@@ -1,8 +1,8 @@
 
 
-  <h3>商品　新規登録画面</h3>
+  <h3>商品 新規登録画面</h3>
 
-  <%= form_for(@item, url: admins_items_path) do |f| %>   <%# urlを指定すると作動する %>
+  <%= form_for(@item, url: admins_items_path) do |f| %>
 
     <% if @item.errors.any? %>
       <div class="alert alert-danger">
@@ -24,7 +24,7 @@
           <table class="table table-striped">
             <tbody>
               <tr>
-                <td>商品名</td>
+                <td>商品名</td>　
                 <td><%= f.text_field :name %></td>
               </tr>
               <tr>
@@ -34,7 +34,7 @@
               <tr>
                 <td>ジャンル</td>
                 <td><%= f.collection_select(:genre_id, @genres, :id, :name, {prompt: "--選択してください--"} ) %></td> <%# ジャンル名で選択できるようにしている %>
-                <!-- ジャンルからレコードを所得して、選択できるようにした -->
+                <!-- ジャンルからレコードを所得して、選択できるようにし、未選択の状態の時に選択してくださいと表示されるようにした -->
               </tr>
               <tr>
                 <td>税抜価格</td>
@@ -43,7 +43,7 @@
               <tr>
                 <td>販売ステータス</td>
                 <td><%= f.select :sale_status, {販売中: '販売中', 売切れ: '売切れ'}, prompt:"--選択してください--" %></td>
-                <!-- 販売中と売切れを選択できるようにした -->
+                <!-- 販売中と売切れを選択できるようにした-->
               </tr>
             </tbody>
           </table>

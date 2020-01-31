@@ -5,6 +5,11 @@ class Customers::DeliveryAddressesController < ApplicationController
     @deliverys = DeliveryAddress.all
   end
 
+  def new
+    @order = Order.new
+    @delivery_addresses = current_customer.delivery_addresses
+  end
+
   def create
     @delivery = DeliveryAddress.new(delivery_address_params)
 
@@ -15,8 +20,8 @@ class Customers::DeliveryAddressesController < ApplicationController
       @deliverys = DeliveryAddress.all
       render :index
     end
-
   end
+
 
   def edit
     @delivery = DeliveryAddress.find(params[:id])
@@ -31,11 +36,6 @@ class Customers::DeliveryAddressesController < ApplicationController
     else
        render :edit
     end
-
-  end
-
-  def new
-    @delivery = DeliveryAddress.new
   end
 
   def destroy
