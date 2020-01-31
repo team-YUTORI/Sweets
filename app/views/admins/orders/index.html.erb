@@ -15,7 +15,8 @@
             注文ステータス</td>
           </tr>
         </thead>
-        <%= @orders.each do |order| %>
+        <% @orders.each do |order| %>
+        <% order.order_details.each do |order_detail| %>
         <tbody>
           <tr>
             <td>
@@ -26,19 +27,15 @@
             </td>
             <td>
               <% sum = 0 %>
-              <% order.order_details.each do |order_detail| %>
               <% sum = sum + order_detail.item_number %>
-              <% end %>
               <%= sum %>
-
             </td>
             <td>
-              <% order.order_details.each do |order_detail| %>
               <% order_detail.order_status %>
-              <% end %>
             </td>
           </tr>
         </tbody>
+    <% end %>
     <% end %>
   </table>
 
