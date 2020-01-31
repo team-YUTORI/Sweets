@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 2020_01_28_112812) do
     t.string "name"
     t.string "postal_code"
     t.string "address"
-    t.integer "postage"
+    t.integer "postage", default: 800
     t.integer "price"
     t.integer "payment"
     t.datetime "created_at", null: false
