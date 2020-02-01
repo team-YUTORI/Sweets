@@ -1,3 +1,6 @@
+
+<div class="container">
+
 <h1>登録情報編集</h1>
 
 <%= form_for @user, url: admins_user_path do |f| %>
@@ -67,7 +70,9 @@
   </tbody>
 </table>
 <div class="action">
-    <%= f.submit '変更を保存する' %>
+    <%= f.submit '変更を保存する', class: "btn btn-info" %>
 </div>
 
 <% end %>
+
+</div>
