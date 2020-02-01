@@ -10,24 +10,29 @@
   </head>
 
   <body>
-
+    <div id="wrapper">
     <header>
       <% if request.fullpath.include? "admin" %>
         <%= render 'layouts/admin_header' %>
       <% else %>
         <%= render 'layouts/customer_header' %>
       <% end %>
-  </header>
+    </header>
 
-  <main>
-    <%= yield %>
-  </main>
+    <main>
+        <%= yield %>
+    </main>
 
-    <footer class="footer p-3 mb-2 bg-secondary text-white">
-      <div class="container text-center">
+    <footer>
+      <div class="text-center">
         <p class="footer-text">© All rights recerved by Time-YUTORI.Inc.</p>
       </div>
+      <!-- <div class="social">
+        <i class="fa fa-facebook-square"></i>
+        <i class="fa fa-twitter-square"></i>
+        <i class="fa fa-instagram"></i>
+      </div> -->
     </footer>
-
+  </div>
   </body>
 </html>
