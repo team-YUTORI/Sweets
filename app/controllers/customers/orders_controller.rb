@@ -1,7 +1,7 @@
 class Customers::OrdersController < ApplicationController
 
-  before_action :authenticate_user!
-	before_action :screen_user,only: [:new, :index , :create , :show,]
+  # before_action :authenticate_user!
+	# before_action :screen_user,only: [:new, :index , :create , :show,]
 
 def index
   @orders = Order.all
@@ -18,9 +18,9 @@ def new
 end
 
 def create
-  if @Order.save
+  #if @Order.save
   # else 2ならDeliveryAddress.save
-  end
+  #end
 end
 
 def show
@@ -32,15 +32,15 @@ end
 private
 
 def order_params
-    params.require(:order).permit(:, :body)
+    params.require(:order).permit(:costomer_id)
 end
 
-def screen_user
-  cart_items = CartItem.find(params[:id])
-  if cart_items.user.id != current_user.id
-    redirect_to _path
-  end
-end
+# def screen_user
+#   cart_items = CartItem.find(params[:id])
+#   if cart_items.user.id != current_user.id
+#     redirect_to _path
+#   end
+# end
 
 
 end
