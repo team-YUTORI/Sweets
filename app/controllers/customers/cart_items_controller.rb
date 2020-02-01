@@ -1,8 +1,9 @@
 class Customers::CartItemsController < ApplicationController
   before_action :authenticate_customer!
-  
+
   def index
-    @cart_items = CartItem.all
+    @cart_items = CartItem.where(customer_id: current_customer)
+    @orders = Order.new
   end
 
   def create

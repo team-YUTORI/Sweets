@@ -19,7 +19,9 @@
         <li class="nav-item">
           <%= link_to "MyCart", cart_items_path, class: "nav-link" %>
         </li>
-      </ul>
+        <li class="nav-item">
+          <%= link_to "MyPage", user_path(current_customer), class: "nav-link" %>
+        </li>
     <!-- ログインしてない顧客 -->
     <% else %>
       <ul class="nav-list">
