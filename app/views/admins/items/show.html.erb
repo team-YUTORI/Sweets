@@ -3,14 +3,7 @@
   <h1>商品 詳細画面</h1>
 
 
-  <%= form_for(@item) do |f| %>
-   <% if @item.item_image_id? %>
-      <%= image_tag @item.item_image_id.url %>
-   <% else %>
-      <%= image_tag "/assets/default.jpg", :size => '100x100' %>
-   <% end %>
-  <% end %>
-
+  <%= image_tag @item.item_image_id.url %>
 
   <table class="table">
     <tbody>

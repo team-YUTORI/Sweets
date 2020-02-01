@@ -33,13 +33,7 @@
       <% @items.each do |item| %>
  				<tr>
  					<td>
-						<%= form_for(item) do |f| %>
-					 		<% if item.item_image_id? %>
-								<%= image_tag item.item_image_id.url %>
-					 		<% else %>
-							<%= image_tag "/assets/default.jpg", :size => '100x100' %>
-					 		<% end %>
-					 	<% end %>
+						<%= image_tag item.item_image_id.url %>
 						<%= link_to item_path(item.id) do %>
  							<%= item.name %>
 						<% end %>
