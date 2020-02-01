@@ -13,10 +13,15 @@
       <% @cart_items.each do |cart_item| %>
       <tr>
         <td><%= cart_item.item.name %></td>
-        <%# 税込価格の計算と.floorメソッドで小数点以下を切り捨て %>
-        <td><%= (cart_item.item.without_tax_price * 1.1).floor %></td>
+        <td><%= cart_item.item.without_tax_price  %></td>
+        <td>
+        <%= form_for(cart_item) do |f| %>
+          <%= f.number_field :item_number, min: 1, max: 10, step: 1 %> 
+          <%= f.submit "変更" %>
+        <% end %>
+        </td>
         <td><%= cart_item.item_number %></td>
-        <%# 商品別の小計を商品価格×個数で計算 %>
+        <%# 商品別の小計を商品価格×個数×消費税(1.1)で計算した後.floorメソッドで小数点以下を切り捨て %>
         <td><%= (cart_item.item.without_tax_price * cart_item.item_number * 1.1).floor%></td>
         <%# 合計金額の計算式を定義 %>
         <% @sum += cart_item.item.without_tax_price * cart_item.item_number * 1.1 %>
@@ -28,7 +33,7 @@
     </tbody>
   </table>
   <table class="table">
-  <%# 上記で定義した合計金額を表示 %>
+  <%# 上記で定義した合計金額の呼び出し %>
   <tr>合計金額
     <%= @sum.floor %>
   </tr>

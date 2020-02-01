@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 class Admins::GenresController < ApplicationController
+  before_action :authenticate_admin!
   def create
     @genre = Genre.new(admin_genre_params)
     if @genre.save

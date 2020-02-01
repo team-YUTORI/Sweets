@@ -1,5 +1,5 @@
 class Admins::ItemsController < ApplicationController
-
+  before_action :authenticate_admin!
   def index
     @item = Item.page(params[:page]).per(10)
     @genres = Genre.where(on_display: true)
