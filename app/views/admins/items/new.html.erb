@@ -1,5 +1,5 @@
 
-
+<div class="container">
   <h3>商品 新規登録画面</h3>
 
   <%= form_for(@item, url: admins_items_path) do |f| %>
@@ -14,7 +14,6 @@
       </div>
     <% end %>
 
-    <div class="container">
       <div class="row">
         <div class="col-lg-4">
           <%= f.file_field :item_image_id, placeholder: "画像選択" %>

@@ -47,12 +47,12 @@
 
 		<!-- 商品一覧 -->
 		<div class="col-xs-10">
-
-				<% @items.each do |item| %>
+				<!-- 6つだけランダムに取り出す -->
+				<% @items.shuffle.first(6).each do |item| %>
 
 					<div class="top-item-name col-xs-4">
 					<%= link_to item_path(item) do %>
-						<%#= image_tag item.item_image_id.url %>
+						<%= image_tag item.item_image_id.url %><br>
 						<span style="font-size: 20px"><%= item.name %></span><br>
 					<% end %>
 					<%= item.without_tax_price.to_s(:delimited, delimiter: ',') %>円<br>
