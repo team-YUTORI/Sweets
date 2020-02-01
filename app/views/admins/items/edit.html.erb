@@ -1,6 +1,6 @@
 
 
-  <h1>商品　編集画面</h1> 
+  <h1>商品　編集画面</h1>
 
 
   <%= form_for(@item, url: admins_item_path) do |f| %>
@@ -16,11 +16,7 @@
       </div>
     <% end %>
 
-    <% if @item.item_image_id? %>
-      <%= image_tag @item.item_image_id.url %>
-    <% else %>
-      <%= image_tag "/assets/default.jpg", :size => '100x100' %>
-    <% end %>
+    <%= image_tag @item.item_image_id.url %>
 
     <%= f.file_field :item_image_id, placeholder: "画像選択" %>
 
