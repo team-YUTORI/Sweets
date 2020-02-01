@@ -14,5 +14,5 @@ class Item < ApplicationRecord
   validates :sale_status, presence: true
 
   enum sale_status: [:販売中, :売切れ]
-  
+
 end

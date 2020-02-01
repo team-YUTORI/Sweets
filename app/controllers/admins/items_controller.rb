@@ -59,7 +59,7 @@ class Admins::ItemsController < ApplicationController
 
   def destroy
     @items = Item.find(params[:id])
-    @items.destroy
+    @items.destroy!
     redirect_to admins_items_path
   end
 
