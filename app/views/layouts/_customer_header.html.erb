@@ -1,9 +1,10 @@
 <!-- 顧客側のヘッダー -->
+
 <nav class="navbar navbar-dark">
   <span class="navbar-brand">NAGANO-CAKE</span>
     <!-- ログインしている顧客 -->
     <% if customer_signed_in? %>
-      <ul class="navbar-nav">
+      <ul class="nav-list">
         <li class="nav-item">
           <%= link_to "Home", root_path, class:
           "nav-link"%>
@@ -23,6 +24,7 @@
         </li>
     <!-- ログインしてない顧客 -->
     <% else %>
+      <ul class="nav-list">
         <li class="nav-item">
           <%= link_to "Home", root_path, class: "nav-link" %>
         </li>
@@ -38,7 +40,7 @@
       </ul>
 
       <!-- 検索フォーム -->
-      <form class="form-inline nav-item">
+      <form class="form-inline nav-list">
         <input class="form-control mr-sm-1" type="search" placeholder="Search">
         <button class="btn btn-primary" type="submit">検索</button>
       </form>

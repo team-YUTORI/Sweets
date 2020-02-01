@@ -3,12 +3,11 @@
 
   <h2>ながのCAKE</h2>
   <p>無料メンバーになりましょう！</p>
-
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
 
-  <table class="table">
+  <table class="table table-bordered">
     <tbody>
 
       <tr>
@@ -96,9 +95,8 @@
   </table>
 
   <% end %>
+    </div>
   </div>
-</div>
-
 
 
 

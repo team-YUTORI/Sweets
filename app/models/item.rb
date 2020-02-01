@@ -4,6 +4,9 @@ class Item < ApplicationRecord
   has_many :cart_items
   belongs_to :genre
 
+  # belongs_to :home
+
+
   mount_uploader :item_image_id, ItemImageIdUploader
 
   validates :item_image_id, presence: true
