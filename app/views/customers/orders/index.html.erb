@@ -4,53 +4,29 @@
 
       <table class="table table-hover">
         <thead>
-          <th>
-            注文日
-          </th>
-          <th>
-            配送先
-          </th>
-          <th>
-            注文商品
-          </th>
-          <th>
-            支払い金額
-          </th>
-          <th>
-            ステータス
-          </th>
-          <th>
-            注文詳細
-          </th>
+          <th>注文日</th>
+          <th>配送先</th>
+          <th>注文商品</th>
+          <th>支払い金額</th>
+          <th>ステータス</th>
+          <th>注文詳細</th>
         </thead>
-
         <% @orders.each do |order| %>
-          <% order.order_details.each do |order_detail| %>
+          <%# order.order_details.each do |order_detail| %>
             <tbody>
               <tr>
-                <td>
-                  <%= order.created_at %>
-                </td>
-                <td>
-                  <%= order.delivery_address %>
-                </td>
-                <td>
-                  <%= order_detail.item.name %>
-                </td>
-                <td>
-                  <%= order_detail.payment %>
-                </td>
-                <td>
-                  <%= order.order_status%>
-                </td>
-                <%= link_to order_path(order.id) , class: 'btn-btndefault' do %>
-                <td>
-                  表示する
-                </td>
+                <td><%= order.created_at %></td>
+                <td><%#= order.delivery_address %></td>
+                <td><%#= order_detail.item.name %></td>
+                <td><%#= order_detail.payment %></td>
+                <td><%#= order.order_status%></td>
+                <td><%= link_to order_path(order.id) , class: 'btn-btndefault' do %>
+                表示する
+                <% end%></td>
               </tr>
             </tbody>
           <% end %>
-        <% end %>
+        <%# end %>
       </table>
 
     </div>
