@@ -1,6 +1,8 @@
 class Customers::OrdersController < ApplicationController
 
+
   # before_action :authenticate_customer!
+
 	# before_action :screen_user,only: [:new, :index , :create , :show,]
 
 def index
@@ -18,9 +20,9 @@ def new
 end
 
 def create
-  if @Order.save
+  #if @Order.save
   # else 2ならDeliveryAddress.save
-  end
+  #end
 end
 
 def show
