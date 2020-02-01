@@ -1,4 +1,4 @@
-<h1>ショッピングカート</h1>  
+<h1>ショッピングカート</h1>
 <%= link_to "空にする", all_destroy_path, method: :delete, "data-confirm" => "本当に空にしますか？",  class:"btn-sm btn-danger" %>
   <table class="table">
     <tbody>
@@ -16,7 +16,7 @@
         <td><%= cart_item.item.without_tax_price  %></td>
         <td>
         <%= form_for(cart_item) do |f| %>
-          <%= f.number_field :item_number, min: 1, max: 10, step: 1 %> 
+          <%= f.number_field :item_number, min: 1, max: 10, step: 1 %>
           <%= f.submit "変更" %>
         <% end %>
         </td>
@@ -38,7 +38,7 @@
     <%= @sum.floor %>
   </tr>
   </table>
-  
+
   <%= link_to "買い物を続ける", items_path  %>
 
   <%= link_to "情報入力にすすむ","#" %>
