@@ -20,9 +20,9 @@ def new
 end
 
 def create
-  #if @Order.save
-  # else 2ならDeliveryAddress.save
-  #end
+  @order= Order.new(order_params)
+  @order.save!
+  redirect_to new_orders_path(current_user)
 end
 
 def show
@@ -34,7 +34,7 @@ end
 private
 
 def order_params
-    params.require(:order).permit(:order_status, :name, :postal_code, :address, :postage, :price, :payment)
+    params.require(:order).permit(:order_status, :name, :postal_code, :address, :postage, :price, :payment, delivery_address_attributes:[:name, :postal_code, :address])
 end
 
 # def screen_user
