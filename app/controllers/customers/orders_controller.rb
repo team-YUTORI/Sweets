@@ -12,6 +12,7 @@ end
 def new
   # カート内容を取得
   @cart_items = CartItem.where(customer_id: current_customer.id)
+  @price = 800
   # 支払い方法を取得
   # if 0なら0の内容
   # else 1なら選択された1を表示
