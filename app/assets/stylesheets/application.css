@@ -29,7 +29,7 @@
 /* ヘッダー */
 header {
   width: 100%;
-  padding: 15px ;
+  padding: 15px 15px 0 15px;
   margin-bottom: 20px;
   list-style: none;
   background-color: #CC6666;
@@ -43,11 +43,14 @@ header {
 }
 .nav-list{
   text-align: center;
-  width: auto;
+  display: inline-block;
+  padding-left: 20px;
+  margin-top: 37px;
+
 }
 .nav-link{
   list-style: none;
-  display: inline-block;
+  /* display: inline-block; */
   color: white;
 }
 .nav-item{
@@ -56,7 +59,7 @@ header {
 }
 /* ヘッダー検索フォーム */
 .form-inline{
-  float: right;
+  /* float: right; */
 }
 /* フッダーを1番下に固定 */
 html,body{
@@ -77,6 +80,13 @@ footer {
   color: white;
   background-color: #CC6666;
   font-family: Chalkduster, "Bradley Hand", Courier, "Segoe Print", sans-serif;
+}
+/* ログインユーザの名前 */
+.current_name{
+  display: inline-block;
+  font-size: 20px;
+  margin-left: 20px;
+  /* margin-top: 10px; */
 }
 /* 顧客トップページアニメーション */
 #theTarget{
