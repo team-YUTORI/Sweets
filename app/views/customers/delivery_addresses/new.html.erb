@@ -5,7 +5,7 @@
 
   <div class="row">
     <h4>支払い方法</h4>
-    <%= form_with(model: @order, url: orders_path,local: true) do |f| %>
+    <%= form_with url: new_order_path, method: :get, local: true do |f| %>
 
       <div class="radio-inline">
         <%= f.radio_button :payment, 0 %>クレジットカード<br>
