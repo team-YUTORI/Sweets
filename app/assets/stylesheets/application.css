@@ -59,7 +59,7 @@ header {
 }
 /* ヘッダー検索フォーム */
 .form-inline{
-  /* float: right; */
+  float: right;
 }
 /* フッダーを1番下に固定 */
 html,body{
