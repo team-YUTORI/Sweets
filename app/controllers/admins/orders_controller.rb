@@ -6,10 +6,12 @@ def top
 end
 
 def index
-  @order_details = Order.all
+  @orders = Order.all
+  @order_details=OrderDetail.all
 end
 
 def show
+  @order = Order.find(params[:id])
   @order = OrderDetails.all
 end
 
@@ -20,11 +22,7 @@ def update
   redirect_to admins_order_path, notice:"You have updated order successfully."
   else
   render :show
+  end
 end
-end
-
-
-
-
 
 end
