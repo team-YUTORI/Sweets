@@ -6,7 +6,7 @@ class ItemImageIdUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
-  process resize_to_fit: [200, 200]
+  process resize_to_fill: [200, 200, "Center"]
 
   # Choose what kind of storage to use for this uploader:
   storage :file
