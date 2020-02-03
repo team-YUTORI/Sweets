@@ -5,6 +5,14 @@ def top
   @order= Order.new
 end
 
+def index
+  @order_details = Order.all
+end
+
+def show
+  @order = OrderDetails.all
+end
+
 def update
   @order = Order.find(params[:id])
   if
@@ -15,13 +23,7 @@ def update
 end
 end
 
-def index
-  @orders = Order.all
-end
 
-def show
-  @order = Order.find(params[:id])
-end
 
 
 

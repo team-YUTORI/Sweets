@@ -3,6 +3,49 @@
     <div class="col-md-12">
       <table class="table table-hover">
         <h2>注文一覧画面</h2>
+        <table class="table">
+      <thead>
+        <tr>
+          <th>購入日時</th>
+          <th>購入者</th>
+          <th>注文個数</th>
+          <th>注文ステータス</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @order_details.each do |order_detail|%>
+          <tr>
+            <td>
+              <%= link_to admins_order_path(order.id) do %>
+                <%= order.created_at %>
+              <% end %>
+            </td>
+            <td>
+                <%= customer.last_name %>
+                <%= customer.first_name %>
+              <% end %>
+            </td>
+            <td>
+              <%= customer.email %>
+            </td>
+            <td>
+              <% if customer.deleted_at == nil%>
+                有効
+              <% else %>
+                退会済
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+
+
+
+
+
         <thead>
           <tr>
           <td>
