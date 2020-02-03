@@ -59,6 +59,9 @@
       <%= f.hidden_field :address, :value => @address %>
       <%= f.hidden_field :name, :value => @name %>
       <%= f.hidden_field :is_new_address, :value => @is_new_address %>
+      <%= f.hidden_field :payment, :value => @payment %>
+      <%= f.hidden_field :without_tax_price, :value => @without_tax_price %>
+      <%= f.hidden_field :item_number, :value => @item_number %>
     <%= f.submit "購入を確定する",class: "btn btn-info" %>
     <% end %>
 
