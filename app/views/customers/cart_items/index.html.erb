@@ -32,7 +32,6 @@
               <%= f.submit "変更" %>
             </td>
               <% end %>
-            <td><%= cart_item.item_number %></td>
             <td>
               <!-- 商品別の小計を商品価格×個数×消費税(1.1)で計算した後.floorメソッドで小数点以下を切り捨て -->
               <%= (cart_item.item.without_tax_price * cart_item.item_number * 1.1).floor%>
