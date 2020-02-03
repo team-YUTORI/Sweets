@@ -14,7 +14,7 @@ def new
   @order = Order.new(order_params)
   @order.payment = params[:payment].to_i
   @order.address = params[:address].to_i
-  @price = 800
+  @                                                postage = 800
   @is_new_address = false
   if params[:address].to_i == 0
     @postal_code = current_customer.postal_code

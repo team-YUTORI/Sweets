@@ -15,7 +15,7 @@
         <td>
           <%= image_tag cart_item.item.item_image_id.url %>
           <%= cart_item.item.name %>
-        </td>
+        </%=>
         <td><%= (cart_item.item.without_tax_price * 1.1).floor  %></td>
         <td>
         <%= form_for(cart_item) do |f| %>

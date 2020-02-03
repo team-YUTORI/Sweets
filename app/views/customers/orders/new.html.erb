@@ -53,6 +53,7 @@
       <%= @postal_code %>
       <%= @address  %><br>
       <%= @name %>
+  </div>
 
     <%= form_with model: @order do |f| %>
       <%= f.hidden_field :postal_code, :value => @postal_code %>
@@ -67,6 +68,6 @@
     </div>
     <div>
       
-    </div>
+    
   </div>
 </div>
