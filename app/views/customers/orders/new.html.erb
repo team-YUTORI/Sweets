@@ -3,57 +3,47 @@
     <h2>注文情報確認</h2>
     <div class="col-md-8">
       <table class="table">
-    <tbody>
-      <tr>
-        <th>商品名</th>
-        <th>単価（税込）</th>
-        <th>数量</th>
-        <th>小計</th>
-        <th></th>
-      </tr>
-      <% @sum = 0 %>
-      <% @cart_items.each do |cart_item| %>
-      <tr>
-        <td><%= image_tag cart_item.item.item_image_id.url %>
-            <%= cart_item.item.name %></td>
-        <td><%= cart_item.item.without_tax_price  %></td>
-        <td><%= cart_item.item_number %></td>
-        <%# 商品別の小計を商品価格×個数×消費税(1.1)で計算した後.floorメソッドで小数点以下を切り捨て %>
-        <td><%= (cart_item.item.without_tax_price * cart_item.item_number * 1.1).floor%></td>
-        <%# 合計金額の計算式を定義 %>
-        <% @sum += cart_item.item.without_tax_price * cart_item.item_number * 1.1 %>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+        <tbody>
+          <tr>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th></th>
+          </tr>
+          <% @sum = 0 %>
+          <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td><%= image_tag cart_item.item.item_image_id.url %>
+                <%= cart_item.item.name %></td>
+            <td><%= cart_item.item.without_tax_price  %></td>
+            <td><%= cart_item.item_number %></td>
+            <%# 商品別の小計を商品価格×個数×消費税(1.1)で計算した後.floorメソッドで小数点以下を切り捨て %>
+            <td><%= (cart_item.item.without_tax_price * cart_item.item_number * 1.1).floor%></td>
+            <%# 合計金額の計算式を定義 %>
+            <% @sum += cart_item.item.without_tax_price * cart_item.item_number * 1.1 %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
     <div class="col-md-4">
-      <%= @cart_items.each do |cart_item| %>
-        <table>
-          <tbody>
-            <tr>
-              <th>配送料</th>
-              <td><%= @price %></td>
-            </tr>
-            <tr>
-              <th>商品合計</th>
-              <td>
-                <% sum = 0 %>
-                <% sum = sum + cart_item.item_number * cart_item.item.without_tax_price * 1.1 %>
-                <%= sum %>
-              </td>
-            </tr>
-            <tr>
-              <th>請求金額</th>
-              <td>
-                <% sum %>
-                <% sum = sum + @price %>
-                <%= sum %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      <% end %>
+      <table class="table">
+      <tbody>
+      <%# 上記で定義した合計金額の呼び出し %>
+        <tr>
+          <td>配送料</td>
+          <td><%= @postage %></td>
+        </tr>
+        <tr>
+          <td>合計金額</td>
+          <td><%= @sum.floor %></td>
+        </tr>
+        <tr>
+          <td>請求金額</td>
+          <td><%= (@sum + @postage).floor %></td>
+        </tr>
+      </table>
     </div>
   </div>
   <div class="row">
@@ -76,9 +66,7 @@
 
     </div>
     <div>
-      <%#= form_with model: @order, url: {controller:'orders',action:'create'} do |form|%>
-        <%#= form.submit '購入を確定する' %>
-      <%# end %>
+      
     </div>
   </div>
 </div>
