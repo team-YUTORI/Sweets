@@ -1,10 +1,5 @@
 class Customers::OrdersController < ApplicationController
 
-
-  # before_action :authenticate_customer!
-
-	# before_action :screen_user,only: [:new, :index , :create , :show,]
-
 def index
   @orders = Order.all
 end
@@ -16,7 +11,7 @@ def new
   @order.payment = params[:payment].to_i
   @order.address = params[:address].to_i
   @postage= 800
-  @payment = @order.payment
+  @payment = params[:payment].to_i
   @without_tax_price = @order_detail.without_tax_price
   @item_number = @order_detail.item_number
   @is_new_address = false
@@ -29,15 +24,18 @@ def new
     @postal_code = delivery_address.postal_code
     @address = delivery_address.address
     @name = delivery_address.name
-  elsif params[:address].to_i == 2
+  elsif params[:address].to_i == 2 && params[:new_postal_code] =~ /\A\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}\z/ && params[:new_address].present? && params[:new_name].present?
     @postal_code = params[:new_postal_code]
     @address = params[:new_address]
     @name = params[:new_name]
     @is_new_address = true
+  else
+    redirect_to new_address_path(current_customer.id)
   end
 end
 
 def create
+
   order = Order.new(
     customer_id: current_customer.id,
     order_status: 0,
@@ -45,8 +43,10 @@ def create
     postal_code: params[:order][:postal_code],
     address: params[:order][:address],
     payment: params[:order][:payment].to_i,
-  )
+    )
+
   if order.save
+
     current_customer.cart_items.each do |cart_item|
       OrderDetail.create(
       order_id: order.id,
@@ -54,14 +54,25 @@ def create
       item_number: cart_item.item_number,
       without_tax_price: cart_item.item.without_tax_price
       )
+
       cart_item.destroy
+
     end
+
     if params[:order][:is_new_address] == "true"
-      DeliveryAddress.create(customer_id: current_customer.id, name: params[:order][:name], postal_code: params[:order][:postal_code], address: params[:order][:address])
+      DeliveryAddress.create(
+      customer_id: current_customer.id,
+      name: params[:order][:name],
+      postal_code: params[:order][:postal_code],
+      address: params[:order][:address]
+      )
     end
+
     redirect_to thanks_path and return
   end
+
   render :new and return
+
 end
 
 def show
@@ -71,15 +82,6 @@ def show
 end
 
 private
-
-# def order_params
-#   params.require(:order).permit(:without_tax_price)
-# end
-
-#
-# def order_detail_params
-#   params.require(:order_detail).permit(:item_number)
-# end
 
 def integer_string?(str)
    Integer(str)
