@@ -12,21 +12,21 @@
           <th>注文詳細</th>
         </thead>
         <% @orders.each do |order| %>
-          <%# order.order_details.each do |order_detail| %>
+        <% order.order_details.each do |order_detail| %>
             <tbody>
               <tr>
                 <td><%= order.created_at %></td>
-                <td><%#= order.delivery_address %></td>
-                <td><%#= order_detail.item.name %></td>
-                <td><%#= order_detail.payment %></td>
-                <td><%#= order.order_status%></td>
+                <td><%= order.address %></td>
+                <td><%= order_detail.item.name %></td>
+                <td><%= order.price %></td>
+                <td><%= order.order_status%></td>
                 <td><%= link_to order_path(order.id) , class: 'btn-btndefault' do %>
                 表示する
                 <% end%></td>
               </tr>
             </tbody>
           <% end %>
-        <%# end %>
+        <% end %>
       </table>
 
     </div>

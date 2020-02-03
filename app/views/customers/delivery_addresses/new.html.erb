@@ -40,9 +40,9 @@
         </div>
         <% end %>
         <div class="actions row">
+          <%= f.hidden_field :price, :value => @sum %>
           <%= f.submit "確認画面へ進む",class: "btn btn-info" %>
         </div>
-
       <% end %>
     </div>
   </div>
