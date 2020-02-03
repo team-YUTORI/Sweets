@@ -65,9 +65,9 @@ def create
 end
 
 def show
-  # @orders = Order.all
-  # @order = Order.find(params[:id])
-  # @postage = Order.postage
+  @orders = Order.all
+  @order = Order.find(params[:id])
+  @postage = Order.where(postage: 800)
 end
 
 private
@@ -87,13 +87,4 @@ def integer_string?(str)
  rescue ArgumentError
    false
 end
-
-# def screen_user
-#   cart_items = CartItem.find(params[:id])
-#   if cart_items.user.id != current_user.id
-#     redirect_to _path
-#   end
-# end
-
-
 end

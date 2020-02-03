@@ -1,9 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-
       <%= form_for(@order, url: admins_order_path) do |f| %>
-
+      <h2>注文詳細画面</h2>
       <table class="table table-hover">
         <tbody>
           <tr>
@@ -34,6 +33,10 @@
         </tbody>
         </table>
         <% end %>
+    </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-offset-4">
         <%= form_for(@order, url: admins_order_path) do |f| %>
         <table class="table table-hover">
         <thead>
@@ -66,7 +69,5 @@
           <% end %>
         </table>
        <% end %>
-
-      </div>
     </div>
   </div>
