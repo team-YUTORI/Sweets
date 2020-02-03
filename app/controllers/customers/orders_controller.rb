@@ -20,29 +20,19 @@ def new
 end
 
 def create
-  @order= Order.new(order_params)
+  @order = Order.new(order_params)
   @order.save!
   redirect_to new_orders_path(current_user)
 end
 
 def show
-  # @orders = Order.all
-  # @order = Order.find(params[:id])
-  # @postage = Order.postage
+  @orders = Order.all
+  @order = Order.find(params[:id])
+  @postage = Order.where(postage: 800)
 end
 
 private
 
 def order_params
     params.require(:order).permit(:order_status, :name, :postal_code, :address, :postage, :price, :payment, delivery_address_attributes:[:name, :postal_code, :address])
-end
-
-# def screen_user
-#   cart_items = CartItem.find(params[:id])
-#   if cart_items.user.id != current_user.id
-#     redirect_to _path
-#   end
-# end
-
-
 end

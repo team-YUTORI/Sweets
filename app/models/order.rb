@@ -4,5 +4,4 @@ class Order < ApplicationRecord
   "発送済み":4}
   enum payment:{"クレジットカード":0 , "銀行振込":1}
   enum address:{"ご自身の住所":0 , "登録済み住所から選択":1 ,"新しいお届け先":2}
-    accepts_nested_attributes_for :delivery_address
 end
