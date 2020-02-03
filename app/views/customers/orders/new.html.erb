@@ -57,7 +57,21 @@
     </div>
   </div>
   <div class="row">
-<!-- 支払い方法、お届け方法 -->
+    <h4>支払方法</h4>
+      <%= @order.payment %>
+    <h4>お届け先</h4>
+      <%= @postal_code %>
+      <%= @address  %><br>
+      <%= @name %>
+
+    <%= form_with model: @order do |f| %>
+      <%= f.hidden_field :postal_code, :value => @postal_code %>
+      <%= f.hidden_field :address, :value => @address %>
+      <%= f.hidden_field :name, :value => @name %>
+      <%= f.hidden_field :is_new_address, :value => @is_new_address %>
+    <%= f.submit "購入を確定する",class: "btn btn-info" %>
+    <% end %>
+
     <div>
 
     </div>
