@@ -10,16 +10,21 @@ def index
 end
 
 def new
+    sum = 0
+    current_customer.cart_items.each do |cart_item|
+    sum += cart_item.item.without_tax_price * cart_item.item_number * 1.1
+  end
   @cart_items = CartItem.where(customer_id: current_customer.id)
   @order = Order.new
   @order_detail = OrderDetail.new
   @order.payment = params[:payment].to_i
   @order.address = params[:address].to_i
   @postage= 800
-  @payment = @order.payment
+  @payment = params[:payment].to_i
   @without_tax_price = @order_detail.without_tax_price
   @item_number = @order_detail.item_number
   @is_new_address = false
+  @price = sum
   if params[:address].to_i == 0
     @postal_code = current_customer.postal_code
     @address = current_customer.address
@@ -38,6 +43,10 @@ def new
 end
 
 def create
+    sum = 0
+    current_customer.cart_items.each do |cart_item|
+    sum += cart_item.item.without_tax_price * cart_item.item_number * 1.1
+  end
   order = Order.new(
     customer_id: current_customer.id,
     order_status: 0,
@@ -45,6 +54,7 @@ def create
     postal_code: params[:order][:postal_code],
     address: params[:order][:address],
     payment: params[:order][:payment].to_i,
+    price: sum
   )
   if order.save
     current_customer.cart_items.each do |cart_item|
@@ -52,8 +62,8 @@ def create
       order_id: order.id,
       item_id: cart_item.item.id,
       item_number: cart_item.item_number,
-      without_tax_price: cart_item.item.without_tax_price
-      )
+      without_tax_price: cart_item.item.without_tax_price,
+    )
       cart_item.destroy
     end
     if params[:order][:is_new_address] == "true"
