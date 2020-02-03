@@ -5,8 +5,7 @@
 
   <div class="row">
     <h4>支払い方法</h4>
-    <%= form_with(model: @order, url: orders_path(current_customer),local: true) do |f| %>
-
+    <%= form_with url: new_order_path, method: :get, local: true do |f| %>
       <div class="radio-inline" >
         <%= f.radio_button :payment, 0 %>クレジットカード<br>
         <%= f.radio_button :payment, 1 %>銀行振込
@@ -22,8 +21,8 @@
         <%= current_customer.last_name %>
         <%= current_customer.first_name %><br>
         <%= f.fields_for :delivery_address do |i|%>
-        <%= i.radio_button :address, 1 %>登録済住所から選択<br>
-        <%= i.collection_select(:delivery_address_id, @delivery_addresses, :id, :view_code) %><br>
+        <%= f.radio_button :address, 1 %>登録済住所から選択<br>
+        <%= f.collection_select(:delivery_address_id, @delivery_addresses, :id, :view_code) %><br>
       </div>
   </div>
 
@@ -31,13 +30,13 @@
     <div class="radio-inline">
       <%= i.radio_button :address, 2 %>新しいお届け先
         <div class="postal_code">郵便番号
-          <%= i.text_field :postal_code, class: "postal_code", placeholder: "1234567" %>ハイフンなし
+          <%= f.text_field :new_postal_code, class: "postal_code", placeholder: "1234567" %>ハイフンなし
         </div>
         <div class="address">住所
-          <%= i.text_field :address %>
+          <%= f.text_field :new_address %>
         </div>
         <div class="name">宛名
-          <%= i.text_field :name %>
+          <%= f.text_field :new_name %>
         </div>
         <% end %>
         <div class="actions row">

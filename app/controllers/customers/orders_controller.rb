@@ -10,19 +10,33 @@ def index
 end
 
 def new
-  # カート内容を取得
   @cart_items = CartItem.where(customer_id: current_customer.id)
-  # 支払い方法を取得
-  # if 0なら0の内容
-  # else 1なら選択された1を表示
-  # elsif 2なら2を表示
-  # end
+  @order = Order.new(order_params)
+  @order.payment = params[:payment].to_i
+  @order.address = params[:address].to_i
+  @price = 800
+  @is_new_address = false
+  if params[:address].to_i == 0
+    @postal_code = current_customer.postal_code
+    @address = current_customer.address
+    @name = current_customer.last_name +  current_customer.first_name
+  elsif params[:address].to_i == 1
+    delivery_address = DeliveryAddress.find(params[:delivery_address_id].to_i)
+    @postal_code = delivery_address.postal_code
+    @address = delivery_address.address
+    @name = delivery_address.name
+  elsif params[:address].to_i == 2
+    @postal_code = params[:new_postal_code]
+    @address = params[:new_address]
+    @name = params[:new_name]
+    @is_new_address = true
+  end
 end
 
 def create
-  #if @Order.save
-  # else 2ならDeliveryAddress.save
-  #end
+  @order= Order.new(order_params)
+  @order.save!
+  redirect_to new_orders_path(current_user)
 end
 
 def show
@@ -34,7 +48,15 @@ end
 private
 
 def order_params
-    params.require(:order).permit(:order_status, :name, :postal_code, :address, :postage, :price, :payment)
+    params.permit(:name, :postal_code, )
+end
+
+
+def integer_string?(str)
+   Integer(str)
+   true
+ rescue ArgumentError
+   false
 end
 
 # def screen_user
