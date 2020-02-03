@@ -2,24 +2,23 @@
   <div class="row">
     <h2>注文情報確認</h2>
     <div class="col-md-8">
-      <table class="table">
+      <table class="table table-bordered">
         <tbody>
           <tr>
             <th>商品名</th>
             <th>単価（税込）</th>
             <th>数量</th>
             <th>小計</th>
-            <th></th>
           </tr>
           <% @sum = 0 %>
           <% @cart_items.each do |cart_item| %>
           <tr>
             <td><%= image_tag cart_item.item.item_image_id.url %>
                 <%= cart_item.item.name %></td>
-            <td><%= cart_item.item.without_tax_price  %></td>
+            <td><%= cart_item.item.without_tax_price.to_s(:delimited, delimiter: ',') %>円</td>
             <td><%= cart_item.item_number %></td>
             <%# 商品別の小計を商品価格×個数×消費税(1.1)で計算した後.floorメソッドで小数点以下を切り捨て %>
-            <td><%= (cart_item.item.without_tax_price * cart_item.item_number * 1.1).floor%></td>
+            <td><%= (cart_item.item.without_tax_price * cart_item.item_number * 1.1).floor.to_s(:delimited, delimiter: ',') %>円</td>
             <%# 合計金額の計算式を定義 %>
             <% @sum += cart_item.item.without_tax_price * cart_item.item_number * 1.1 %>
           </tr>
@@ -28,32 +27,42 @@
       </table>
     </div>
     <div class="col-md-4">
-      <table class="table">
-      <tbody>
+      <table class="table table-bordered">
       <%# 上記で定義した合計金額の呼び出し %>
         <tr>
           <td>配送料</td>
-          <td><%= @postage %></td>
+          <td><%= @postage %>円</td>
         </tr>
         <tr>
           <td>合計金額</td>
-          <td><%= @sum.floor %></td>
+          <td><%= @sum.floor.to_s(:delimited, delimiter: ',') %>円</td>
         </tr>
         <tr>
           <td>請求金額</td>
-          <td><%= (@sum + @postage).floor %></td>
+          <td><%= (@sum + @postage).floor.to_s(:delimited, delimiter: ',') %>円</td>
         </tr>
       </table>
     </div>
   </div>
   <div class="row">
-    <h4>支払方法</h4>
-      <%= @order.payment %>
-    <h4>お届け先</h4>
-      <%= @postal_code %>
-      <%= @address  %><br>
-      <%= @name %>
-
+    <div class="col-md-2 text-center">
+      <h4>支払方法</h4>
+    </div>
+    <div class="col-md-5">
+      <h4><%= @order.payment %></h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 text-center">
+      <h4>お届け先</h4>
+    </div>
+    <div class="col-md-5">
+        <h4>〒<%=@postal_code %>
+        <%= @address  %><br>
+        <%= @name %></h4>
+    </div>
+  </div>
+  <div class="row">
     <%= form_with model: @order do |f| %>
       <%= f.hidden_field :postal_code, :value => @postal_code %>
       <%= f.hidden_field :address, :value => @address %>
@@ -62,6 +71,8 @@
       <%= f.hidden_field :payment, :value => @payment %>
       <%= f.hidden_field :without_tax_price, :value => @without_tax_price %>
       <%= f.hidden_field :item_number, :value => @item_number %>
+    <div class="row">
+    <div class="col-md-2 col-md-offset-5">
     <%= f.submit "購入を確定する",class: "btn btn-info" %>
     <% end %>
 
@@ -69,7 +80,6 @@
 
     </div>
     <div>
-
     </div>
   </div>
 </div>
