@@ -69,6 +69,7 @@ def create
     end
 
     redirect_to thanks_path and return
+
   end
 
   render :new and return

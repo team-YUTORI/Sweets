@@ -3,16 +3,6 @@
 
   <h3>購入情報入力画面</h3>
 
-  <% if params[:new_address].present? %>
-    <div class="alert alert-danger">
-      <ul>
-      <% params[:new_address].errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class="row">
     <h4>支払い方法</h4>
     <%= form_with url: new_order_path, method: :get, local: true do |f| %>
