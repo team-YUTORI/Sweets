@@ -1,7 +1,8 @@
-<div class="containr">
-  <p>会員の方はこちらからログイン</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h3>会員の方はこちらからログイン</h3>
 
-    <div class="col-md-5">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
         <table class="table">
@@ -19,11 +20,13 @@
               </div>
             </tr>
             <tr>
-              <td><a>＝>パスワードを忘れた方はこちら</a></td>
+              <td><a>=>パスワードを忘れた方はこちら</a></td>
+              <td></td>
             </tr>
             <tr>
               <div class="actions">
                 <td><%= f.submit "ログイン", class: "btn btn-info" %></td>
+                <td></td>
               </div>
             </tr>
           </tbody>
@@ -39,5 +42,5 @@
           </tbody>
         </table>
     </div>
-
+  </div>
 </div>
