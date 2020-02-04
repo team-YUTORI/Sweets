@@ -13,8 +13,10 @@
     <div id="wrapper">
     <header>
       <% if request.fullpath.include? "admin" %>
+        <!-- 管理者側のヘッダー -->
         <%= render 'layouts/admin_header' %>
       <% else %>
+        <!-- 顧客側のヘッダー -->
         <%= render 'layouts/customer_header' %>
       <% end %>
     </header>
