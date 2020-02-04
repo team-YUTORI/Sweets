@@ -53,8 +53,8 @@ def create
     postal_code: params[:order][:postal_code],
     address: params[:order][:address],
     payment: params[:order][:payment].to_i,
-    price: sum
-    postage: 800.to_i
+    price: sum,
+    postage: 800
   )
 
   if order.save
