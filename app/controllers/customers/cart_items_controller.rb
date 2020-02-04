@@ -7,9 +7,22 @@ class Customers::CartItemsController < ApplicationController
   end
 
   def create
-    #現在ログイン中のユーザーと、そのカートアイテムの空のインスタンスを生成
-    cart_item = current_customer.cart_items.new(cart_item_params)
-    cart_item.save!
+    cart_items = CartItem.where(customer_id: current_customer)
+    has_item = false
+    cart_items.each do | cart_item |
+      if cart_item.item_id == params[:cart_item][:item_id].to_i
+          has_item = true
+        # 数量をupdate
+          sum = cart_item.item_number + params[:cart_item][:item_number].to_i
+          cart_item.update(item_number: sum)
+      end
+    end
+
+    if !has_item
+      cart_item = current_customer.cart_items.new(cart_item_params)
+      cart_item.save!
+    end
+    @cart_items = CartItem.where(customer_id: current_customer)
     redirect_to cart_items_path
   end
 
