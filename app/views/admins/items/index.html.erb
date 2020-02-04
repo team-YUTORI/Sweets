@@ -23,7 +23,7 @@
           <th>ジャンル</th>
           <th>ステータス</th>
         </tr>
-        <% @items.each do |item| %>
+        <% @item.each do |item| %>
         <tr>
           <td><%= item.id %></td>
           <td><%= link_to admins_item_path(item.id) do %>
@@ -39,7 +39,7 @@
         <% end %>
       </tbody>
     </table>
+    <%= paginate @item %>
     </div>
   </div>
-  <%= paginate @item, class: "paginate" %>
 </div>
