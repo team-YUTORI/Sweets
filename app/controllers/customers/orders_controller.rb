@@ -14,12 +14,12 @@ def new
   @order_detail = OrderDetail.new
   @order.payment = params[:payment].to_i
   @order.address = params[:address].to_i
-  @postage= 800
   @payment = params[:payment].to_i
   @without_tax_price = @order_detail.without_tax_price
   @item_number = @order_detail.item_number
   @is_new_address = false
   @price = sum
+  @postage = 800
   if params[:address].to_i == 0
     @postal_code = current_customer.postal_code
     @address = current_customer.address
@@ -54,6 +54,7 @@ def create
     address: params[:order][:address],
     payment: params[:order][:payment].to_i,
     price: sum
+    postage: 800.to_i
   )
 
   if order.save
@@ -90,7 +91,6 @@ end
 def show
   @orders = Order.all
   @order = Order.find(params[:id])
-  @postage = Order.where(postage: 800)
 end
 
 private
