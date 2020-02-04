@@ -40,12 +40,12 @@ def new
 end
 
 def create
-  
+
     sum = 0
     current_customer.cart_items.each do |cart_item|
     sum += cart_item.item.without_tax_price * cart_item.item_number * 1.1
   end
-  
+
   order = Order.new(
     customer_id: current_customer.id,
     order_status: 0,
@@ -54,7 +54,7 @@ def create
     address: params[:order][:address],
     payment: params[:order][:payment].to_i,
     price: sum
-
+ )
   if order.save
 
     current_customer.cart_items.each do |cart_item|

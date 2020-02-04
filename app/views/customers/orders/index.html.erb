@@ -15,7 +15,7 @@
         <% order.order_details.each do |order_detail| %>
             <tbody>
               <tr>
-                <td><%= order.updated_at %></td>
+                <td><%= order.created_at.in_time_zone('Tokyo') %></td>
                 <td><%= order.address %></td>
                 <td><%= order_detail.item.name %></td>
                 <td><%= order.price %></td>

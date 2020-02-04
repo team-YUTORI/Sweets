@@ -6,6 +6,7 @@ class Customer < ApplicationRecord
 
   has_many :cart_items
   has_many :delivery_addresses
+  has_many :orders
 
   #last_nameの空欄、文字制限（１５文字）
   validates :last_name, presence: true, length: {maximum: 15 }

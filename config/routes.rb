@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :index, :edit, :update, :destroy]
     resources :items, only: [:show, :index, :new, :create, :edit, :update, :destroy]
     get 'orders/top' => 'orders#top'
+    patch 'orders/productionupdate/:id' => 'orders#productionupdate'
+    put 'orders/productionupdate/:id' => 'orders#productionupdate'
     resources :orders, only: [:show, :index, :update]
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
    end
