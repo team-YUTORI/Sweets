@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   # belongs_to :home
 
   attachment :item_image
-  #mount_uploader :item_image_id, ItemImageIdUploader
+  # mount_uploader :item_image_id, ItemImageIdUploader
 
   validates :item_image, presence: true
   validates :name, presence: true

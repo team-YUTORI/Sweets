@@ -29,7 +29,7 @@ def productionupdate
   @orderdetail = OrderDetail.find(params[:id])
   @orderdetail.production_status = params[:production_status]
   @orderdetail.update(order_details_params)
-  redirect_to admins_orders_path
+  redirect_to admins_order_path(@orderdetail.order)
 end
 
 

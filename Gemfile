@@ -70,9 +70,9 @@ gem 'jquery-rails'
 # クレジットカード
 gem 'payjp'
 # 画像アップロード機能
-gem 'carrierwave'
+# gem 'carrierwave'
 # 画像リサイズ
-gem 'mini_magick'
+# gem 'mini_magick'
 # ページネーション
 gem 'kaminari'
 # 検索機能
