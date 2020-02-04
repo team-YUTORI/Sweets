@@ -6,7 +6,7 @@
         <tbody>
           <tr>
             <th>注文日</th>
-            <td><%= @order.created_at %></td>
+            <td><%= @order.created_at.in_time_zone('Tokyo') %></td>
           </tr>
           <tr>
             <th>配送先</th>

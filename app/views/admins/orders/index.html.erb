@@ -21,12 +21,12 @@
           <tr>
             <td>
               <%= link_to admins_order_path(order.id) do %>
-                <%= order.created_at %>
+                <%= order.created_at.in_time_zone('Tokyo') %>
               <% end %>
             </td>
             <td>
-              <%= order.customer.last_name %>
-              <%= order.customer.first_name %>
+               <%= order.customer.last_name %>
+                <%= order.customer.first_name %>
             </td>
             <td>
               <% sum = 0 %>
@@ -34,7 +34,7 @@
               <%= sum %>
             </td>
             <td>
-              <% order_detail.order_status %>
+              <%= order.order_status %>
             </td>
           </tr>
         </tbody>
