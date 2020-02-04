@@ -14,12 +14,12 @@ def new
   @order_detail = OrderDetail.new
   @order.payment = params[:payment].to_i
   @order.address = params[:address].to_i
-  @postage= 800
   @payment = params[:payment].to_i
   @without_tax_price = @order_detail.without_tax_price
   @item_number = @order_detail.item_number
   @is_new_address = false
   @price = sum
+  @postage = 800
   if params[:address].to_i == 0
     @postal_code = current_customer.postal_code
     @address = current_customer.address
@@ -40,12 +40,12 @@ def new
 end
 
 def create
-  
+
     sum = 0
     current_customer.cart_items.each do |cart_item|
     sum += cart_item.item.without_tax_price * cart_item.item_number * 1.1
   end
-  
+
   order = Order.new(
     customer_id: current_customer.id,
     order_status: 0,
@@ -53,7 +53,9 @@ def create
     postal_code: params[:order][:postal_code],
     address: params[:order][:address],
     payment: params[:order][:payment].to_i,
-    price: sum
+    price: sum,
+    postage: 800
+  )
 
   if order.save
 
@@ -89,7 +91,6 @@ end
 def show
   @orders = Order.all
   @order = Order.find(params[:id])
-  @postage = Order.where(postage: 800)
 end
 
 private
