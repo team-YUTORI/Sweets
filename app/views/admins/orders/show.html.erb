@@ -30,7 +30,7 @@
               </td>
             <td>
             <%= f.select :order_status,Order.order_statuses.keys %>
-          <%= f.submit "更新" %></td>
+          <%= f.submit "更新", class: "btn btn-info" %></td>
           </tr>
         </tbody>
         </table>
@@ -58,16 +58,16 @@
             <td>
               <%= order_detail.item.name %></td>
             <td>
-              <%= (order_detail.item.without_tax_price * 1.1).floor %></td>
+              <%= (order_detail.item.without_tax_price * 1.1).floor.to_s(:delimited, delimiter: ',') %></td>
             <td>
               <%= order_detail.item_number %></td>
             <td>
-               <%= (order_detail.item.without_tax_price* 1.1 *order_detail.item_number).floor%>
+               <%= (order_detail.item.without_tax_price* 1.1 *order_detail.item_number).floor.to_s(:delimited, delimiter: ',') %>
               </td>
               <td>
               <%= f.hidden_field :order_details_id, :value => order_detail %>
               <%= f.select :production_status, OrderDetail.production_statuses.keys %>
-            <%= f.submit "更新" %></td>
+            <%= f.submit "更新", class: "btn btn-info" %></td>
             </tbody>
 
           <% end %>
@@ -80,7 +80,7 @@
           <tbody>
             <tr>
             <th>商品合計</th>
-            <td><%= @order.price %></td>
+            <td><%= @order.price.to_s(:delimited, delimiter: ',') %></td>
              </tr>
             <tr>
             <th>送料</th>
