@@ -64,6 +64,7 @@ header {
 /* フッダーを1番下に固定 */
 html,body{
   height: 100%;
+  background-color: #FFF5EE;
 }
 body,
 #wrapper {
