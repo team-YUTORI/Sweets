@@ -1,4 +1,4 @@
-50<!-- カスタマーのトップページ -->
+<!-- カスタマーのトップページ -->
 
 <!-- アニメーション -->
 <div class="container">
@@ -58,7 +58,7 @@
 						<span style="font-size: 20px"><%= item.name %></span><br>
 					<% end %>
 					<%= item.without_tax_price.to_s(:delimited, delimiter: ',') %>円<br>
-					<%= item.description %>
+					<%#= item.description %>
 					</div>
 
 				<% end %>
