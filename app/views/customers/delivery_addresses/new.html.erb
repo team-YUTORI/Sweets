@@ -24,13 +24,13 @@
         <%= f.radio_button :address, 1 %>登録済住所から選択<br>
         <%= f.collection_select(:delivery_address_id, @delivery_addresses, :id, :view_code) %><br>
       </div>
-  </div>
+   </div>
 
   <div class="row">
     <div class="radio-inline">
-      <%= i.radio_button :address, 2 %>新しいお届け先
+      <%= f.radio_button :address, 2 %>新しいお届け先
         <div class="postal_code">郵便番号
-          <%= f.text_field :new_postal_code, class: "postal_code", placeholder: "1234567" %>ハイフンあり
+          <%= f.text_field :new_postal_code, class: "postal_code", placeholder: "123-4567" %>ハイフンあり
         </div>
         <div class="address">住所
           <%= f.text_field :new_address %>
@@ -43,8 +43,8 @@
           <%= f.hidden_field :price, :value => @sum %>
           <%= f.submit "確認画面へ進む",class: "btn btn-info" %>
         </div>
-      <% end %>
+
+    <% end %>
     </div>
   </div>
-
 </div>

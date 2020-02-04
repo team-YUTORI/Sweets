@@ -1,14 +1,19 @@
 
 <div class="container">
   <div class="row">
-    <h1>商品一覧画面</h1>
+    <div class="col-md-4">
+      <h2>商品一覧画面</h2>
+    </div>
     <!-- 追加のプラスボタン -->
-    <%= link_to new_admins_item_path, class: "btn btn-default btn-circle btn-lg" do %>
-      <i class="">+</i>
-    <% end %>
+    <div class="col-md-2 col-md-offset-4">
+      <%= link_to new_admins_item_path, class: "btn btn-default btn-circle btn-lg" do %>
+        <i class="">+</i>
+      <% end %>
+    </div>
   </div>
 
   <div class="row">
+    <div class="col-md-8 col-md-offset-2">
     <table class="table">
       <tbody>
         <tr>
@@ -34,6 +39,7 @@
         <% end %>
       </tbody>
     </table>
-      <%= paginate @item, class: "paginate" %>
+    </div>
   </div>
+  <%= paginate @item, class: "paginate" %>
 </div>

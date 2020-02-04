@@ -2,6 +2,7 @@ class Admins::UsersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
+    @user = Customer.page(params[:page]).per(10)
     @users = Customer.with_deleted #論理削除されているユーザーと、既存ユーザーの両方を表示
   end
 
