@@ -13,8 +13,7 @@
           <% @sum = 0 %>
           <% @cart_items.each do |cart_item| %>
           <tr>
-            <td><%= image_tag cart_item.item.item_image_id.url %>
-                <%= cart_item.item.name %></td>
+            <td><%= attachment_image_tag cart_item.item, :item_image, size: "50x50"%></td>
             <td><%= cart_item.item.without_tax_price.to_s(:delimited, delimiter: ',') %>円</td>
             <td><%= cart_item.item_number %></td>
             <%# 商品別の小計を商品価格×個数×消費税(1.1)で計算した後.floorメソッドで小数点以下を切り捨て %>
