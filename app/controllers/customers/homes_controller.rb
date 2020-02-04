@@ -1,7 +1,7 @@
 class Customers::HomesController < ApplicationController
   def top
-    @items = Item.all
-    @genres = Genre.all
+    @genres = Genre.where(on_display: true)
+    @items = Item.where(genre: @genres, sale_status: 0)
   end
 
   def thanks
