@@ -12,7 +12,7 @@ end
 
 def show
   @order = Order.find(params[:id])
-  @order = OrderDetails.all
+  @orderdetail = OrderDetails.all
 end
 
 def update

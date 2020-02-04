@@ -1,17 +1,18 @@
 
 <div class="container">
-  <h2>会員一覧画面</h2>
+  <div class="row">
+    <h2>会員一覧画面</h2>
+  </div>
+  <div class="row">
+  <div class="col-md-8 col-md-offset-2">
     <table class="table">
-      <thead>
+      <tbody>
         <tr>
           <th>会員ID</th>
           <th>氏名</th>
           <th>メールアドレス</th>
           <th>ステータス</th>
         </tr>
-      </thead>
-
-      <tbody>
         <% @users.each do |customer|%>
           <tr>
             <td>
@@ -37,4 +38,6 @@
         <% end %>
       </tbody>
     </table>
+  </div>
+    <%= paginate @user, class: "paginate" %>
 </div>

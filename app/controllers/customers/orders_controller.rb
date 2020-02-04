@@ -5,6 +5,10 @@ def index
 end
 
 def new
+    sum = 0
+    current_customer.cart_items.each do |cart_item|
+    sum += cart_item.item.without_tax_price * cart_item.item_number * 1.1
+  end
   @cart_items = CartItem.where(customer_id: current_customer.id)
   @order = Order.new
   @order_detail = OrderDetail.new
@@ -15,6 +19,7 @@ def new
   @without_tax_price = @order_detail.without_tax_price
   @item_number = @order_detail.item_number
   @is_new_address = false
+  @price = sum
   if params[:address].to_i == 0
     @postal_code = current_customer.postal_code
     @address = current_customer.address
@@ -36,6 +41,11 @@ end
 
 def create
   
+    sum = 0
+    current_customer.cart_items.each do |cart_item|
+    sum += cart_item.item.without_tax_price * cart_item.item_number * 1.1
+  end
+  
   order = Order.new(
     customer_id: current_customer.id,
     order_status: 0,
@@ -43,7 +53,7 @@ def create
     postal_code: params[:order][:postal_code],
     address: params[:order][:address],
     payment: params[:order][:payment].to_i,
-    )
+    price: sum
 
   if order.save
 
