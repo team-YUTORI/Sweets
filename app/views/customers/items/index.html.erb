@@ -2,7 +2,6 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-3">
-
 			<table class="table table-bordered table-hover">
 				<thead>
  					<tr>
@@ -22,33 +21,26 @@
       		<% end %>
 				</tbody>
 			</table>
-
 		</div>
-		<div class="col-md-5">
+		<div class="col-md-7">
 			 <% if params[:id] %>
 					<h2><%= @genre.name %></h2>
 			 <% else %>
 					<h2>全て</h2>
 			 <% end %>
-
-
-			（全<%= @items.count %>件）<%# 検索件数を表示 %>
-
-
+			（全<%= @items.count %>件）<!-- 検索件数を表示 -->
+		</div>
+		<div class="">
       <% @items.each do |item| %>
- 				<tr>
- 					<td>
-						<%= image_tag item.item_image_id.url %>
-						<%= link_to item_path(item.id) do %>
- 							<%= item.name %>
-						<% end %>
-            ¥<%= item.without_tax_price %>
- 				  </td>
- 			  </tr>
+				<div class="col-md-3">
+				<%= image_tag item.item_image_id.url %><br>
+				<%= link_to item_path(item.id) do %>
+ 					<%= item.name %><br>
+				<% end %>
+       <%= item.without_tax_price.to_s(:delimited, delimiter: ',') %>円
+			 </div>
  			<% end %>
-
-
-	<%= paginate @item_page, class: "paginate" %>
-
+			<%= paginate @item_page, class: "paginate" %>
+		</div>
 	</div>
 </div>
