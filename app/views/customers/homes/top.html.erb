@@ -1,4 +1,4 @@
-50<!-- カスタマーのトップページ -->
+<!-- カスタマーのトップページ -->
 
 <!-- アニメーション -->
 <div class="container">
@@ -17,7 +17,7 @@
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th class="warning text-center"><%= link_to "長野ケーキの歴史","#" %></th>
+						<th class="warning text-center"><%= link_to "長野ケーキの歴史", about_path %></th>
 					</tr>
 					<tr>
 					<tr>
@@ -58,7 +58,7 @@
 						<span style="font-size: 20px"><%= item.name %></span><br>
 					<% end %>
 					<%= item.without_tax_price.to_s(:delimited, delimiter: ',') %>円<br>
-					<%= item.description %>
+					<%#= item.description %>
 					</div>
 
 				<% end %>

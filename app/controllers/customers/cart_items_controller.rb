@@ -7,6 +7,10 @@ class Customers::CartItemsController < ApplicationController
   end
 
   def create
+    # if params[:cart_item][:item_number].present?
+    # else
+    #   redirect_to 
+    # end
     cart_items = CartItem.where(customer_id: current_customer)
     has_item = false
     cart_items.each do | cart_item |
@@ -20,7 +24,7 @@ class Customers::CartItemsController < ApplicationController
 
     if !has_item
       cart_item = current_customer.cart_items.new(cart_item_params)
-      cart_item.save!
+      cart_item.save
     end
     @cart_items = CartItem.where(customer_id: current_customer)
     redirect_to cart_items_path

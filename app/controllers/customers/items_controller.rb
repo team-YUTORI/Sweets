@@ -6,9 +6,9 @@ class Customers::ItemsController < ApplicationController
 
     if params[:id]   # urlにgenre_id(params)がある場合
       @genre = Genre.find(params[:id])   # Genreのデータベースのテーブルから一致するidを取得
-      @items = @genre.items.order(created_at: :desc).all   # genre_idと紐づく投稿を取得
+      @items = @genre.items.order(created_at: :desc).where(sale_status: 0)   # genre_idと紐づく投稿を取得
     else
-      @items = Item.where(genre: @genres)   # ジャンルが有効になっている、商品だけ一覧表示
+      @items = Item.where(genre: @genres, sale_status: 0)  # ジャンルが有効になっている、商品だけ一覧表示
     end
   end
 
