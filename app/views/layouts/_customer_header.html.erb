@@ -1,0 +1,58 @@
+<!-- 顧客側のヘッダー -->
+
+<nav class="navbar navbar-dark">
+  <span class="navbar-brand">NAGANO-CAKE</span>
+    <!-- ログインしている顧客 -->
+    <% if customer_signed_in? %>
+      <ul class="nav-list">
+        <li class="nav-item">
+          <%= link_to "Home", root_path, class:
+          "nav-link"%>
+        </li>
+        <li class="nav-item">
+          <%= link_to "About", about_path, class:
+            "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Logout", destroy_customer_session_path, method: :delete, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "MyCart", cart_items_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "MyPage", user_path(current_customer), class: "nav-link" %>
+        </li>
+      </ul>
+        <!-- ログインユーザの名前 -->
+        <span class="current_name">ようこそ <%= current_customer.last_name + current_customer.first_name %>さん！</span>
+        <!-- 検索フォーム -->
+        <form class="form-inline nav-list">
+          <input class="form-control mr-sm-1" type="search" placeholder="Search">
+          <button class="btn btn-primary" type="submit">検索</button>
+        </form>
+
+    <!-- ログインしてない顧客 -->
+    <% else %>
+      <ul class="nav-list">
+        <li class="nav-item">
+          <%= link_to "Home", root_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "About", about_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to " SignIn", new_customer_registration_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "LogIn", new_customer_session_path, class: "nav-link" %>
+        </li>
+      </ul>
+      <!-- ログインユーザの名前 -->
+      <span class="current_name">あ、どうも ゲストさん</span>
+      <!-- 検索フォーム -->
+      <form class="form-inline nav-list">
+        <input class="form-control mr-sm-1" type="search" placeholder="Search">
+        <button class="btn btn-primary" type="submit">検索</button>
+      </form>
+    <% end %>
+  </nav>

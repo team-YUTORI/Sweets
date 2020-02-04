@@ -1,56 +1,57 @@
 
-
-  <h3>商品　新規登録画面</h3>
-
-  <%= form_for(@item, url: admins_items_path) do |f| %>   <%# urlを指定すると作動する %>
-
-    <% if @item.errors.any? %>
-      <div class="alert alert-danger">
-        <ul>
-        <% @item.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+<div class="container">
+  <h3>商品 新規登録画面</h3>
+    <div class="row">
+      <%= form_for(@item, url: admins_items_path) do |f| %>
+        <% if @item.errors.any? %>
+          <div class="alert alert-danger">
+            <ul>
+            <% @item.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
         <% end %>
-        </ul>
+
+      
+      <div class="col-md-4">
+        <%= f.attachment_field :item_image, placeholder: "画像選択" %>
       </div>
-    <% end %>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4">
-          <%= f.file_field :item_image_id, placeholder: "画像選択" %>
-        </div>
-
-        <div class="col-lg-4">
-          <table class="table table-striped">
-            <tbody>
-              <tr>
-                <td>商品名</td>
-                <td><%= f.text_field :name %></td>
-              </tr>
-              <tr>
-                <td>商品説明</td>
-                <td><%= f.text_area :description %></td>
-              </tr>
-              <tr>
-                <td>ジャンル</td>
-                <td><%= f.collection_select(:genre_id, @genres, :id, :name, {prompt: "--選択してください--"} ) %></td> <%# ジャンル名で選択できるようにしている %>
-              </tr>
-              <tr>
-                <td>税抜価格</td>
-                <td><%= f.text_field :without_tax_price %>円</td>
-              </tr>
-              <tr>
-                <td>販売ステータス</td>
-                <td><%= f.select :sale_status, {販売中: '販売中', 売切れ: '売切れ'}, prompt:"--選択してください--" %></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="col-lg-4">
-          <%= f.submit "新規登録" %>
-        </div>
+      <div class="col-md-4">
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <td>商品名</td>　
+              <td><%= f.text_field :name %></td>
+            </tr>
+            <tr>
+              <td>商品説明</td>
+              <td><%= f.text_area :description %></td>
+            </tr>
+            <tr>
+              <td>ジャンル</td>
+              <td><%= f.collection_select(:genre_id, @genres, :id, :name, {prompt: "--選択してください--"} ) %></td> <%# ジャンル名で選択できるようにしている %>
+                <!-- ジャンルからレコードを所得して、選択できるようにし、未選択の状態の時に選択してくださいと表示されるようにした -->
+            </tr>
+            <tr>
+              <td>税抜価格</td>
+              <td><%= f.text_field :without_tax_price %>円</td>
+            </tr>
+            <tr>
+              <td>販売<br>ステータス</td>
+              <td><%= f.select :sale_status, {販売中: '販売中', 売切れ: '売切れ'}, prompt:"--選択してください--" %></td>
+              <!-- 販売中と売切れを選択できるようにした-->
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-offset-8 text-center">
+        <%= f.submit "新規登録", class: "btn btn-info btn-lg" %>
+      </div>
+    </div>
+  </div>
 
   <% end %>

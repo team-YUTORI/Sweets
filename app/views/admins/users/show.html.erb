@@ -1,3 +1,6 @@
+
+<div class="container">
+
 <h2>会員詳細画面</h2>
 
 <table class="table">
@@ -59,7 +62,8 @@
   </tbody>
 </table>
 
-<%= link_to "編集する", edit_admins_user_path(@user) %>
-      
-<%= link_to "注文履歴一覧を見る", "#"%>
-      
+<%= link_to "編集する", edit_admins_user_path(@user), class: "btn btn-info" %>
+
+<%= link_to "注文履歴一覧を見る", "#", class: "btn btn-warning" %>
+
+</div>

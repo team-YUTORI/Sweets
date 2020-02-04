@@ -1,22 +1,31 @@
 class Admins::ItemsController < ApplicationController
-
+  before_action :authenticate_admin!
   def index
-    @item = Item.page(params[:page]).per(10)
-    @items = Item.all
+    @genres = Genre.where(on_display: true)
+    @item = Item.where(genre: @genres).page(params[:page]).per(10)
+    if admin_signed_in?
+    else
+      redirect_to root_path
+    end
   end
 
   def show
     @item = Item.find(params[:id])
     @genre = @item.genre
     @tax = @item.without_tax_price * 1.1   # 税抜価格を所得し、税率10%をかけた
+    if admin_signed_in?
+    else
+      redirect_to root_path
+    end
   end
 
   def new
     @item = Item.new
     @genres = Genre.where(on_display: true)   #whereで持ってくる情報を厳選
-    # if @items.user != admin_user
-      # redirect_to root_path
-    # end
+    if admin_signed_in?
+    else
+      redirect_to root_path
+    end
   end
 
   def create
@@ -32,9 +41,10 @@ class Admins::ItemsController < ApplicationController
   def edit
     @item = Item.find(params[:id])
     @genres = Genre.where(on_display: true)
-    # if @items.user != admin_user
-    #   redirect_to root_path
-    # end
+    if admin_signed_in?
+    else
+      redirect_to root_path
+    end
   end
 
   def update
@@ -48,18 +58,17 @@ class Admins::ItemsController < ApplicationController
 
   def destroy
     @items = Item.find(params[:id])
-    @items.destroy
+    @items.destroy!
     redirect_to admins_items_path
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :genre_id, :without_tax_price, :sale_status, :item_image_id)
+    params.require(:item).permit(:name, :description, :genre_id, :without_tax_price, :sale_status, :item_image)
   end
-
-  def genre_params
-    prams.require(:genre).permit(:name, :on_display)
-  end
+  # def genre_params
+  #   prams.require(:genre).permit(:name, :on_display)
+  # end
 
 end
