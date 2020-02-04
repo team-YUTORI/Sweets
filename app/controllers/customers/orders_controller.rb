@@ -35,7 +35,7 @@ def new
 end
 
 def create
-
+  
   order = Order.new(
     customer_id: current_customer.id,
     order_status: 0,
