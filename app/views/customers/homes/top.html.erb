@@ -1,4 +1,4 @@
-<!-- カスタマーのトップページ -->
+50<!-- カスタマーのトップページ -->
 
 <!-- アニメーション -->
 <div class="container">
@@ -54,7 +54,7 @@
 
 					<div class="top-item-name col-xs-4">
 					<%= link_to item_path(item) do %>
-						<%= image_tag item.item_image_id.url %><br>
+						<%= attachment_image_tag item, :item_image, size: "150x150"%><br>
 						<span style="font-size: 20px"><%= item.name %></span><br>
 					<% end %>
 					<%= item.without_tax_price.to_s(:delimited, delimiter: ',') %>円<br>

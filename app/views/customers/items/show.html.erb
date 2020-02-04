@@ -24,7 +24,7 @@
     </div>
   
     <div class="col-md-7 text-center">
-      <%= image_tag @item.item_image_id.url %>
+      <%= attachment_image_tag @item, :item_image, size: "100x100"%>
     </div>
     <div class="col-md-3">
       <h3><%= @item.name %></h3>
