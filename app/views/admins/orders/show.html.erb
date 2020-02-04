@@ -53,7 +53,6 @@
             制作ステータス</td>
         </thead>
         <% @orderdetail.each do |order_detail| %>
-        <%= form_for(order_detail, url:{controler: "admins_orders", action: "productionupdate"}) do |f| %>
            <tbody>
             <td>
               <%= order_detail.item.name %></td>
@@ -65,12 +64,15 @@
                <%= (order_detail.item.without_tax_price* 1.1 *order_detail.item_number).floor.to_s(:delimited, delimiter: ',') %>
               </td>
               <td>
-              <%= f.hidden_field :order_details_id, :value => order_detail %>
+            <%= form_for(order_detail, url: admins_path(order_detail), method: :patch) do |f| %>
               <%= f.select :production_status, OrderDetail.production_statuses.keys %>
+
             <%= f.submit "更新", class: "btn btn-info" %></td>
+
+            <% end %>
+
             </tbody>
 
-          <% end %>
        <% end %>
                </table>
          </div>

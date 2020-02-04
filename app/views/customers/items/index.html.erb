@@ -33,14 +33,14 @@
 		<div class="">
       <% @items.each do |item| %>
 				<div class="col-md-3">
-				<%= attachment_image_tag item, :item_image, size: "100x100"%><br>
+				<%= attachment_image_tag item, :item_image, size: "200x200"%><br>
 				<%= link_to item_path(item.id) do %>
  					<%= item.name %><br>
 				<% end %>
        <%= item.without_tax_price.to_s(:delimited, delimiter: ',') %>円
 			 </div>
  			<% end %>
-			<%= paginate @item_page, class: "paginate" %>
 		</div>
+		<%= paginate @item_page, class: "paginate" %>
 	</div>
 </div>

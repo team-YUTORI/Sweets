@@ -10,4 +10,3 @@ Admin.create!(
   email: 'yutori@aaa',
   password: 'aaaaaa',
 )
-
