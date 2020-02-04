@@ -55,7 +55,7 @@ def create
     payment: params[:order][:payment].to_i,
     price: sum,
     postage: 800
-  )
+    )
 
   if order.save
 
