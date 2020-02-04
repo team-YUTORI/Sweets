@@ -57,7 +57,7 @@
       <!-- 上記で定義した合計金額の呼び出し -->
         <tr>
           <td class="active">合計金額</td>
-          <td><%= @sum.floor %></td>
+          <td><%= @sum.floor.to_s(:delimited, delimiter: ',') %></td>
         </tr>
       </table>
     </div>

@@ -69,10 +69,12 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 # クレジットカード
 gem 'payjp'
+
 # 画像アップロード機能
 # gem 'carrierwave'
 # 画像リサイズ
 # gem 'mini_magick'
+
 # ページネーション
 gem 'kaminari'
 # 検索機能
