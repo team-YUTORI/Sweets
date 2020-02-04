@@ -14,7 +14,7 @@ before_action :authenticate_customer!
   def create
     @delivery = DeliveryAddress.new(delivery_address_params)
     @delivery.customer_id = current_customer.id
-    if @delivery.save!
+    if @delivery.save
        flash[:notice] = "配送先が登録されました"
        redirect_to delivery_addresses_path
     else
