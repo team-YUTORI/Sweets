@@ -40,10 +40,9 @@ def new
 end
 
 def create
-
-    sum = 0
-    current_customer.cart_items.each do |cart_item|
-    sum += cart_item.item.without_tax_price * cart_item.item_number * 1.1
+  sum = 0
+  current_customer.cart_items.each do |cart_item|
+  sum += cart_item.item.without_tax_price * cart_item.item_number * 1.1
   end
 
   order = Order.new(
@@ -56,9 +55,7 @@ def create
     price: sum,
     postage: 800
     )
-
   if order.save
-
     current_customer.cart_items.each do |cart_item|
       OrderDetail.create(
       order_id: order.id,
@@ -66,26 +63,19 @@ def create
       item_number: cart_item.item_number,
       without_tax_price: cart_item.item.without_tax_price
       )
-
-      cart_item.destroy
-
-    end
-
-    if params[:order][:is_new_address] == "true"
-      DeliveryAddress.create(
-      customer_id: current_customer.id,
-      name: params[:order][:name],
-      postal_code: params[:order][:postal_code],
-      address: params[:order][:address]
-      )
-    end
-
-    redirect_to thanks_path and return
-
+    cart_item.destroy
   end
-
+  if params[:order][:is_new_address] == "true"
+    DeliveryAddress.create(
+    customer_id: current_customer.id,
+    name: params[:order][:name],
+    postal_code: params[:order][:postal_code],
+    address: params[:order][:address]
+    )
+  end
+    redirect_to thanks_path and return
+  end
   render :new and return
-
 end
 
 def show

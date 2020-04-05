@@ -3,22 +3,17 @@ class Customers::CartItemsController < ApplicationController
 
   def index
     @cart_items = CartItem.where(customer_id: current_customer)
-    # @orders = Order.new
   end
 
   def create
-    # if params[:cart_item][:item_number].present?
-    # else
-    #   redirect_to 
-    # end
     cart_items = CartItem.where(customer_id: current_customer)
     has_item = false
     cart_items.each do | cart_item |
       if cart_item.item_id == params[:cart_item][:item_id].to_i
-          has_item = true
+        has_item = true
         # 数量をupdate
-          sum = cart_item.item_number + params[:cart_item][:item_number].to_i
-          cart_item.update(item_number: sum)
+        sum = cart_item.item_number + params[:cart_item][:item_number].to_i
+        cart_item.update(item_number: sum)
       end
     end
 
