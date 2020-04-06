@@ -4,7 +4,6 @@ class Customers::UsersController < ApplicationController
 
   def show
     @user = Customer.find(params[:id])
-    
   end
 
   def edit
@@ -41,6 +40,5 @@ class Customers::UsersController < ApplicationController
     redirect_to new_customer_session_path
     end
   end
-
 
 end

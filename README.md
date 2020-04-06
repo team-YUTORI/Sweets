@@ -1,24 +1,87 @@
-# README
+# ながのCAKE ECサイト:cake:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+⻑野県にある⼩さな洋菓⼦店「ながのCAKE」の商品を通販するためのECサイト開発
 
-Things you may want to cover:
+## 会員側実装機能
+* 顧客は会員登録、ログイン・ログアウト、退会が可能
+* 会員のログインは**メールアドレス**と**パスワード**で⾏う
+* 会員がログインしている状態かどうか、ページのヘッダーにユーザ名を表⽰するなどして判断できる
+* サイトの閲覧はログインなしで⾏える<br>
+* 商品をカートに⼊れ、1度に複数種類、複数商品の購⼊ができる。また、カート内の商品は個数変更・削除ができる
+* カートへの商品追加はログインなしでは⾏えない
+* クレジットカード情報はシステム上保持しない
+* 会員はマイページからユーザ情報の閲覧・編集、注⽂履歴の閲覧、配送先の閲覧・編集ができる
+  - 注⽂履歴⼀覧には下記の情報が表⽰される
+  - 注⽂⽇
+  - 配送先
+  - ⽀払⾦額（商品合計＋送料）
+  - 注⽂ステータス
 
-* Ruby version
+- 注⽂履歴詳細には下記の情報が表⽰される
+  - 注⽂⽇
+  - 配送先
+  - ⽀払⽅法
+  - 注⽂ステータス
+  - 商品の注⽂内容詳細（商品名、単価、個数、⼩計）
+  - 請求情報（商品合計、送料、⽀払⾦額）
 
-* System dependencies
+- 会員登録時、下記の情報をユーザ情報として⼊⼒できる
+  - 名前（姓・名）
+  - 名前（カナ姓・カナ名）
+  - 郵便番号
+  - 住所
+  - 電話番号
+  - メールアドレス
+  - パスワード
+* 商品は税込価格で表⽰される
 
-* Configuration
 
-* Database creation
+## 店側実装機能
+* 管理者⽤**メールアドレス**と**パスワード**でログインできる
+* 商品の新規追加、編集、販売停⽌（売切表⽰）が⾏える
+- 商品情報は下記のものを持つ
+  - 商品名
+  - 商品説明⽂
+  - ジャンル
+  - 税抜価格
+  - 商品画像
+  - 販売ステータス
+* 会員登録されているユーザ情報の閲覧、編集、退会処理が⾏える
+* ユーザの注⽂履歴が⼀覧・詳細表⽰できる
+- 注⽂履歴には注⽂ごとに下記の情報が表⽰される
+  - 購⼊者
+  - 購⼊⽇
+  - 購⼊内容
+  - 請求額合計
+  - 配送先
+  - 注⽂ステータス
+  - 各注⽂商品の製作ステータス
+* 注⽂ステータス、製作ステータスの更新ができる
+* 商品ジャンルには「有効」「無効」を設定できること。無効に設定したジャンルは、ジャンル⼀覧に表⽰されないこと。また、無効になっているジャンルに紐付く商品は表⽰されない
+* ヘッダに検索窓を配置し検索機能実装（商品名や会員⽒名で検索可）
 
-* Database initialization
+## 使用ツール
+#### 開発環境
+* ruby '2.5.7'
+* rails '~> 5.2.4', '>= 5.2.4.1'
+* git version 2.17.1
 
-* How to run the test suite
+#### gem
+* devise
+* bootstrap-sass, ~> 3.3.6
+* jquery-rails
+* ransack
+* payjp
+* kaminari
+* paranoia
+* pry-byebug
+* refile
+* refile-mini_magick
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 作成情報
+DMMwebcamp 2ヶ月目チーム開発にて作成:two_men_holding_hands:
+#### メンバー
+* [R-t0923](https://github.com/R-t0923)
+* [tatuya5911](https://github.com/tatuya5911)
+* [lefokd](https://github.com/lefokd)
+* [KUGA16](https://github.com/KUGA16)
